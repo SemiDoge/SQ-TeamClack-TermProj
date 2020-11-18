@@ -8,5 +8,13 @@ namespace SQ_TeamClack_TermProj
 {
     class Item
     {
+        private ulong ItemID;
+        private string itemDesc;
+        private int itemStockLvl;
+        private double itemWeight;
+        public Item ()
+        {
+
+        }
     }
 }
