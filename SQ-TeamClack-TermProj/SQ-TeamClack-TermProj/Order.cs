@@ -18,11 +18,21 @@ namespace SQ_TeamClack_TermProj
         private string carrierData;
         private double fees;
 
+        /*!
+         * \brief CONSTRUCTOR
+         * \details
+         * 
+         * \param ...
+         */
         public Order()
         {
 
         }
 
+        /*!
+         * \brief ...
+         * \details
+         */
         private void calculateWeight()
         {
             //todo calculateWeight() logic
@@ -30,6 +40,11 @@ namespace SQ_TeamClack_TermProj
             //totalOrderWeight = ;
         }
 
+        /*!
+         * \brief ...
+         * \details
+         * \return
+         */
         private DateTime getTime()
         {
             DateTime rDt = new DateTime();
@@ -39,6 +54,11 @@ namespace SQ_TeamClack_TermProj
             return rDt;
         }
 
+        /*!
+         * \brief ...
+         * \details
+         * \return
+         */
         public string queryOrder()
         {
             StringBuilder strBr = new StringBuilder();
@@ -48,6 +68,11 @@ namespace SQ_TeamClack_TermProj
             return strBr.ToString();
         }
 
+        /*!
+         * \brief ...
+         * \details
+         * \return
+         */
         public string queryManifest()
         {
             StringBuilder strBr = new StringBuilder();
@@ -57,11 +82,19 @@ namespace SQ_TeamClack_TermProj
             return strBr.ToString();
         }
 
+        /*!
+         * \brief ...
+         * \details
+         */
         public void recalculateWeight()
         {
             //todo recalculateWeight() logic
         }
 
+        /*!
+         * \brief ...
+         * \details
+         */
         public void calculateSubTotal()
         {
             //todo calculateSubTotal() logic

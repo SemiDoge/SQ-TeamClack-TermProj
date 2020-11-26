@@ -12,6 +12,11 @@ namespace SQ_TeamClack_TermProj
         private string itemDesc;
         private int itemStockLvl;
         private double itemWeight;
+
+        /*!
+         * \brief CONSTRUCTOR
+         * \details
+         */
         public Item()
         {
 
