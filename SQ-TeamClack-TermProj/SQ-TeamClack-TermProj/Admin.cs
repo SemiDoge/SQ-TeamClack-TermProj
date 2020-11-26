@@ -22,8 +22,8 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
-         * \details
+         * \brief This function allows an admin to configure the application settings.
+         * \details 
          */
         public void adminConfig()
         {
@@ -31,7 +31,7 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
+         * \brief This function allows an admin to access and view the log files.
          * \details
          */
         public void reviewLogFiles()
@@ -40,9 +40,9 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
-         * \param
+         * \brief This function allows an admin to modify the prices in the rate tables.
          * \details
+         * \param adminID - <b>ulong</b> - The ID of the admin user; used for security and audit purposes.
          */
         public void modifyRateTables(ulong adminID)
         {
@@ -50,9 +50,9 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
-         * \param
+         * \brief This function allows an admin to modify the registered carrier data.
          * \details
+         * \param adminID - <b>ulong</b> - The ID of the admin user; used for security and audit purposes. 
          */
         public void modifyCarrierData(ulong adminID)
         {
@@ -60,9 +60,9 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
-         * \param
+         * \brief This function allows an admin to modify the routes within the route table.
          * \details
+         * \param adminID - <b>ulong</b> - The ID of the admin user; used for security and audit purposes.
          */
         public void modifyRouteTable(ulong adminID)
         {
@@ -70,11 +70,11 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
-         * \param
+         * \brief This function allows an admin to back-up all of the data within the system.
          * \details
+         * \param adminID - <b>ulong</b> - The ID of the admin user; used for security and audit purposes.
          */
-        public void initiateBackup(string backupString)
+        public void initiateBackup(ulong adminID)
         {
             //todo initiateBackup() logic
         }

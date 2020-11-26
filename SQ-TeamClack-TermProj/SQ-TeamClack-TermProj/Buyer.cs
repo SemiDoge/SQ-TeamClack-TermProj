@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -23,44 +25,49 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief
+         * \brief This function allows the buyer to choose from a list of cities in order to deliever.
          * \details
+         * \param city - <b>string</b> - The city for carrier nominiaton.
          */
-        private void selectCity()
+        private void selectCity(string city)
         {
             //todo selectCity() logic
         }
 
         /*!
-         * \brief
+         * \brief This function allow the buyer to generate their invoice, given their orders' orderID.
          * \details
-         * \param
+         * \param orderID - <b>ulong</b> - The ID of the order.
          */
-        private void generateInvoice(ulong buyerID)
+        private void generateInvoice(ulong orderID)
         {
             //todo generateInvoice() logic
         }
 
-        public void reviewExistingCustomer()
+        /*!
+          * \brief This function allows the buyer to review existing customer information.
+          * \details
+          * \param buyerID - <b>ulong</b> - The ID of the buyer.
+          */
+        public void reviewExistingCustomer(ulong buyerID)
         {
             //todo reviewExistingCustomer() logic
         }
 
         /*!
-         * \brief
+         * \brief This function allows the buyer to accept new customers.
          * \details
-         * \param
+         * \param buyerID - <b>ulong</b> - The ID of the buyer.         
          */
-        public void acceptNewCustomer(string str)
+        public void acceptNewCustomer(ulong buyerID)
         {
             //todo acceptNewCustomer() logic
         }
 
         /*!
-         * \brief
-         * \details
-         * \param
-         * \return 
+         * \brief This function allows for the creation of a new order.
+         * \details 
+         * \return <b>Order</b> - This newly created Order object/
          */
         public Order inintateNewOrder()
         {
@@ -70,8 +77,5 @@ namespace SQ_TeamClack_TermProj
 
             return ordRet;
         }
-
     }
-
-
 }

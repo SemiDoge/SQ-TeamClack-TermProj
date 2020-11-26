@@ -24,9 +24,8 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
+         * \brief This function allows the planner to select the carrier for transportation.
          * \details
-         * \return
          */
         public void selectCarrier()
         {
@@ -34,11 +33,10 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
+         * \brief This function calculates the route from the trip, given the start and finish.
          * \details
-         * \param ...
-         * \param ...
-         * \return
+         * \param start - <b>string</b> - The starting point of the route.
+         * \param finish - <b>string</b> - The ending point of the route.
          */
         public void createRoute(string start, string finish)
         {
@@ -46,9 +44,8 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
+         * \brief This function increments the trip time.
          * \details
-         * \return
          */
         public void incrementTripTime()
         {
@@ -56,10 +53,10 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
+         * \brief This function displays the order summary.
          * \details
-         * \param ...
-         * \return
+         * \param orderID - <b>ulong</b> - The ID of the order.
+         * \return <b>string</b> - A string that contains a summary of the order.
          */
         public string displayOrderSummary(ulong orderID)
         {
@@ -71,10 +68,10 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief ...
+         * \brief This function displays the summary report.
          * \details
-         * \param ...
-         * \return
+         * \param orderID - <b>ulong</b> - The ID of the order.
+         * \return <b>string</b> - A string that contains the summary report.
          */
         public string generateSummaryReport(ulong orderID)
         {
