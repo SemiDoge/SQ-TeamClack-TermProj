@@ -13,16 +13,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SQ_TeamClack_TermProj
+namespace testUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string usernameMain = "";
         public MainWindow()
         {
             InitializeComponent();
+            loginPage login = new loginPage();
+            mainDisplay.NavigationService.Navigate(login);
         }
     }
 }
