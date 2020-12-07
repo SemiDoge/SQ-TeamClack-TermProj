@@ -18,7 +18,7 @@
             <RowDefinition Height="0.02*"/>
             <RowDefinition Height="0.02*"/>
             <RowDefinition Height="0.12*"/>
-            <RowDefinition Height="0.01*"/>
+            <RowDefinition Height="0.013*"/>
         </Grid.RowDefinitions>
         <Border Grid.Column="0" Background="#c2c2c2"/>
         <Border Grid.Column="1" Background="White"/>
@@ -35,7 +35,24 @@
         <Label x:Name="UsernameLabel" Grid.Column="1" Grid.Row="0" 
                Content="" HorizontalContentAlignment="Right" FontFamily="Arial" 
                FontSize="30" VerticalAlignment="Center" Foreground="#616161"/>
+        <Label x:Name="pageHeader" Grid.Column="1" Grid.Row="1" Content="Customer List"
+               HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="30"
+               FontFamily="Arial" Foreground="#616161"/>
+        <Label x:Name="errorLabel" Grid.Column="1" Grid.Row="4" Content=""
+               HorizontalContentAlignment="Left" Foreground="Red" FontSize="15"/>
 
+        <ListView x:Name="customerList" Grid.Column="1" Grid.Row="3" Height="350" VerticalAlignment="Top"
+                  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" FontFamily="Arial">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Customer Name" Width="800" DisplayMemberBinding="{Binding clientName}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button x:Name="addCustomerBTN" Grid.Column="1" Grid.Row="3" Content="Add Customer"
+                Width="120" Height="35" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                FontSize="15" Margin="70" Click="addCustomerBTN_Click"/>
         <Button x:Name="InitiateOrderBTN" Grid.Column="0" Grid.Row="1"
                 Content="Create a Order" VerticalAlignment="Bottom" HorizontalAlignment="Center"
                 Width="200" Height="85" Foreground="#616161" FontSize="20" FontFamily="Arial" Click="InitiateOrderBTN_Click"/>

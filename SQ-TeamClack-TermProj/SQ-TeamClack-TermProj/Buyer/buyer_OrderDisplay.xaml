@@ -72,10 +72,8 @@
         <ComboBox x:Name="cityInput" Grid.Column="1" Grid.Row="2"
                  HorizontalAlignment="Center" VerticalAlignment="Top" Width="380"
                  Height="30" FontSize="20" SelectionChanged="cityInput_SelectionChanged"/>
-        <Button x:Name="citySubmitBTN" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center"
-                VerticalAlignment="Bottom" Content="Submit" Width="80" FontSize="20" Click="citySubmitBTN_Click"/>
         <Button x:Name="orderSubmitBTN" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center"
-                VerticalAlignment="Top" Content="Finish Order" Width="130" FontSize="20" Click="orderSubmitBTN_Click" Margin="338,469,338,0"/>
+                VerticalAlignment="Top" Content="Finish Order" Width="130" FontSize="20" Click="orderSubmitBTN_Click" Margin="338,427,338,0" />
         <Label x:Name="errorLabel" Grid.Column="1" Grid.Row="4" Content=""
                HorizontalContentAlignment="Left" Foreground="Red" FontSize="15"/>
 

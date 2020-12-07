@@ -40,8 +40,26 @@ namespace SQ_TeamClack_TermProj
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Orders page
-            buyer_ReviewOrders reviewOrders = new buyer_ReviewOrders(localUser);
-            this.NavigationService.Navigate(reviewOrders);
+            if (localUser.getOrderProgress() == true)
+            {
+                MessageBoxResult result = MessageBox.Show("You have a order in progress. Are you sure you want to exit?", "T.M.S. Application", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    buyer_ReviewOrders reviewOrders = new buyer_ReviewOrders(localUser);
+                    this.NavigationService.Navigate(reviewOrders);
+                    localUser.setOrderProgress(false);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                buyer_ReviewOrders reviewOrders = new buyer_ReviewOrders(localUser);
+                this.NavigationService.Navigate(reviewOrders);
+            }
+
         }
 
         private void connectDataBTN_Click(object sender, RoutedEventArgs e)
@@ -60,6 +78,7 @@ namespace SQ_TeamClack_TermProj
                 {
                     connection.Open();
                     databaseConnected = true; // bool that handles 
+                    localUser.setOrderProgress(true);
                     reader = cmd.ExecuteReader();
                     // Once connected, fill textbox with information
                     while (reader.Read())
@@ -103,18 +122,49 @@ namespace SQ_TeamClack_TermProj
         private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Customers page
-            buyer_ReviewCustomers reviewCustomers = new buyer_ReviewCustomers(localUser);
-            this.NavigationService.Navigate(reviewCustomers);
+            if (localUser.getOrderProgress() == true)
+            {
+                MessageBoxResult result = MessageBox.Show("You have a order in progress. Are you sure you want to exit?", "T.M.S. Application", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    buyer_ReviewCustomers reviewCustomers = new buyer_ReviewCustomers(localUser);
+                    this.NavigationService.Navigate(reviewCustomers);
+                    localUser.setOrderProgress(false);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                buyer_ReviewCustomers reviewCustomers = new buyer_ReviewCustomers(localUser);
+                this.NavigationService.Navigate(reviewCustomers);
+            }
         }
 
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
-            //log the user out 
-            localUser.logout();
-
             // Return to login page
-            loginPage login = new loginPage(localUser);
-            this.NavigationService.Navigate(login);
+            if (localUser.getOrderProgress() == true)
+            {
+                MessageBoxResult result = MessageBox.Show("You have a order in progress. Are you sure you want to exit?", "T.M.S. Application", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    loginPage login = new loginPage(localUser);
+                    this.NavigationService.Navigate(login);
+                    localUser.setOrderProgress(false);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                loginPage login = new loginPage(localUser);
+                this.NavigationService.Navigate(login);
+            }
         }
 
         private void createOrderBTN_Click(object sender, RoutedEventArgs e)

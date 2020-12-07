@@ -31,6 +31,7 @@ namespace SQ_TeamClack_TermProj
             this.localUser = localUser;
         }
 
+
         private void SubmitBTN_Click(object sender, RoutedEventArgs e)
         {
             bool usernameValid = false;

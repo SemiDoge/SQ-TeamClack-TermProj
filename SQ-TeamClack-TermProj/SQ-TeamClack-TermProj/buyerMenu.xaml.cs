@@ -49,7 +49,10 @@ namespace SQ_TeamClack_TermProj
 
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
+            localUser.logout();
 
+            loginPage login = new loginPage(localUser);
+            this.NavigationService.Navigate(login);
         }
     }
 }

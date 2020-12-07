@@ -22,8 +22,6 @@ namespace SQ_TeamClack_TermProj
     /// </summary>
     public partial class buyer_OrderDisplay : Page
     {
-        private bool cityValid = false;
-        private bool orderValid = false;
         private User localUser;
         private Order order;
         
@@ -43,10 +41,10 @@ namespace SQ_TeamClack_TermProj
 
             order = new Order(param);
 
-            customerName.Content = order.customerName;
-            origin.Content = order.origin;
-            quantity.Content = order.quantity;
-            destination.Content = order.destination;
+            customerName.Content = order.CUSTOMERNAME;
+            origin.Content = order.ORIGIN;
+            quantity.Content = order.QUANTITY;
+            destination.Content = order.DESTINATION;
         }
 
         private void fillCityComboBox()
@@ -88,113 +86,107 @@ namespace SQ_TeamClack_TermProj
         private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Customers page
-            buyer_ReviewCustomers reviewCustomers = new buyer_ReviewCustomers(localUser);
-            this.NavigationService.Navigate(reviewCustomers);
+            if (localUser.getOrderProgress() == true)
+            {
+                MessageBoxResult result = MessageBox.Show("You have a order in progress. Are you sure you want to exit?", "T.M.S. Application", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    buyer_ReviewCustomers reviewCustomers = new buyer_ReviewCustomers(localUser);
+                    this.NavigationService.Navigate(reviewCustomers);
+                    localUser.setOrderProgress(false);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                buyer_ReviewCustomers reviewCustomers = new buyer_ReviewCustomers(localUser);
+                this.NavigationService.Navigate(reviewCustomers);
+            }
         }
 
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Orders page
-            buyer_ReviewOrders reviewOrders = new buyer_ReviewOrders(localUser);
-            this.NavigationService.Navigate(reviewOrders);
+            if (localUser.getOrderProgress() == true)
+            {
+                MessageBoxResult result = MessageBox.Show("You have a order in progress. Are you sure you want to exit?", "T.M.S. Application", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
+                {
+                    buyer_ReviewOrders reviewOrders = new buyer_ReviewOrders(localUser);
+                    this.NavigationService.Navigate(reviewOrders);
+                    localUser.setOrderProgress(false);
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                buyer_ReviewOrders reviewOrders = new buyer_ReviewOrders(localUser);
+                this.NavigationService.Navigate(reviewOrders);
+            }
         }
 
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
-            //log the user out 
-            localUser.logout();
-
             // Return to login page
-            loginPage login = new loginPage(localUser);
-            this.NavigationService.Navigate(login);
-        }
-
-        private void citySubmitBTN_Click(object sender, RoutedEventArgs e)
-        {
-            // Connect to database
-            string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
-            StringBuilder cmdSB = new StringBuilder("SELECT COUNT(*) FROM CarrierCities WHERE CityName=" + cityInput.SelectedItem + ";");
-            int mysqlint = 0;
-
-
-            using (MySqlConnection connection = new MySqlConnection(conStr))
+            if (localUser.getOrderProgress() == true)
             {
-
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
-                try
+                MessageBoxResult result = MessageBox.Show("You have a order in progress. Are you sure you want to exit?", "T.M.S. Application", MessageBoxButton.YesNo);
+                if (result == MessageBoxResult.Yes)
                 {
-                    connection.Open();
-                    mysqlint = int.Parse(cmd.ExecuteScalar().ToString());
+                    loginPage login = new loginPage(localUser);
+                    this.NavigationService.Navigate(login);
+                    localUser.setOrderProgress(false);
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    connection.Close();
+                    return;
                 }
             }
-
-            if (mysqlint == 1 && (string)city.Content == order.origin)
-            {
-                city.Content = cityInput.Text;
-                city.Visibility = Visibility.Visible;
-            }
-            else if ((string)city.Content == "")
-            {
-                errorMsg.Content = "ERROR: City field cannot be blank.\n";
-            }
-            else
-            {
-                errorMsg.Content = "ERROR: City does not exist.\n";
-            }
-
-
-            cityValid = true;
-            orderValid = true;
-            cityLabel.Content = cityInput.Text;
-            citySubmitBTN.IsEnabled = false;
         }
 
         private void orderSubmitBTN_Click(object sender, RoutedEventArgs e)
         {
-            string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
-            StringBuilder cmdSB = new StringBuilder("INSERT INTO Orders(CustomerName, JobType, Quantity, Origin, Destination, Van_Type, CarrierName) VALUES ('" + order.customerName + "', " + order.jobType + ", " + order.quantity + ", '" + order.origin + "', '" + order.destination + "', " + order.vanType + ",'');");
-
-            using (MySqlConnection connection = new MySqlConnection(conStr))
+            if ((string)cityInput.SelectedItem == order.ORIGIN)
             {
+                string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
+                StringBuilder cmdSB = new StringBuilder("INSERT INTO Orders(OrderID, OrderDate, CustomerName, JobType, Quantity, Origin, Destination, Van_Type, MarkedForAction) VALUES (" + order.ORDERID + ", '" + order.getTimeStamp().ToString() + "', '" + order.CUSTOMERNAME + "', " + order.JOBTYPE + ", " + order.QUANTITY + ", '" + order.ORIGIN + "', '" + order.DESTINATION + "', " + order.VANTYPE + ", " + order.MARKEDFORACTION + "); INSERT INTO Customers(CustomerName) VALUES ('" + order.CUSTOMERNAME + "');");
 
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
-                try
+                using (MySqlConnection connection = new MySqlConnection(conStr))
                 {
-                    connection.Open();
-                    cmd.ExecuteNonQuery();
+
+                    MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
+                    try
+                    {
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
 
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    connection.Close();
-                }
 
-            }
-
-            if (orderValid == true)
-            {
-                // Generate order number
-                // Send order to database
-                // Then return to buyer menu
                 buyer_InitiateOrder buyerOrderMenu = new buyer_InitiateOrder(localUser);
                 this.NavigationService.Navigate(buyerOrderMenu);
             }
             else
             {
-                errorLabel.Content += "ERROR: One or more fields for this order are invalid";
+                errorMsg.Content = "ERROR: Selected city is not proximal to origin.\n";
             }
+
+
+            
         }
 
         private void cityInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
