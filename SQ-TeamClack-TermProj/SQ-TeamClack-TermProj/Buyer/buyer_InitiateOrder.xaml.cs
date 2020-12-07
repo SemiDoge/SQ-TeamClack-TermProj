@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Configuration;
 
-namespace SQ_TeamClack_TermProject
+namespace SQ_TeamClack_TermProj
 {
     /// <summary>
     /// Interaction logic for buyer_InitiateOrder.xaml

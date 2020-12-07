@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SQ_TeamClack_TermProject
+namespace SQ_TeamClack_TermProj
 {
     public struct contractParams
     {

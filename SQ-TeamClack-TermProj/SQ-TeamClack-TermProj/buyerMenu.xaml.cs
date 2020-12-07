@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SQ_TeamClack_TermProject
+namespace SQ_TeamClack_TermProj
 {
     /// <summary>
     /// Interaction logic for buyerMenu.xaml

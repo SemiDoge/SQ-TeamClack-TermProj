@@ -13,16 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SQ_TeamClack_TermProject
+namespace SQ_TeamClack_TermProj
 {
     /// <summary>
-    /// Interaction logic for buyer_ReviewOrders.xaml
+    /// Interaction logic for buyer_ReviewCustomers.xaml
     /// </summary>
-    public partial class buyer_ReviewOrders : Page
+    public partial class buyer_ReviewCustomers : Page
     {
-        private User localUser;
-
-        public buyer_ReviewOrders(User localUser)
+        public User localUser;
+        public buyer_ReviewCustomers(User localUser)
         {
             InitializeComponent();
 
@@ -39,14 +38,14 @@ namespace SQ_TeamClack_TermProject
 
         private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
         {
-            // Go to Review Customers page
-            buyer_ReviewCustomers reviewCustomers = new buyer_ReviewCustomers(localUser);
-            this.NavigationService.Navigate(reviewCustomers);
+
         }
 
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
-
+            // Go to Review Orders page
+            buyer_ReviewOrders reviewOrders = new buyer_ReviewOrders(localUser);
+            this.NavigationService.Navigate(reviewOrders);
         }
 
         private void logoutButton_Click(object sender, RoutedEventArgs e)

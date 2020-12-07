@@ -40,9 +40,9 @@
         <Label Grid.Column="0" Grid.Row="0" Content="T.M.S" 
                FontSize="50" Foreground="#e4e4e4" FontFamily="Arial" 
                HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label x:Name="Username" Grid.Column="1" Grid.Row="0" 
+        <Label x:Name="Username" Grid.Row="0" 
                Content="Please Sign In" HorizontalContentAlignment="Right" FontFamily="Arial" 
-               FontSize="30" VerticalAlignment="Center" Foreground="#616161"/>
+               FontSize="30" VerticalAlignment="Center" Foreground="#616161" Grid.ColumnSpan="2" Margin="184,18,10,18"/>
         <Label x:Name="SignInLabel" Grid.Column="1" Grid.Row="1"
                Content="Enter your Information" HorizontalContentAlignment="Center"
                VerticalContentAlignment="Top" FontSize="40"/>

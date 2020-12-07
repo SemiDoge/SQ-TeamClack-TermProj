@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 using System.Configuration;
 using System.Windows;
 
-namespace SQ_TeamClack_TermProject
+namespace SQ_TeamClack_TermProj
 {
     class Order
     {
