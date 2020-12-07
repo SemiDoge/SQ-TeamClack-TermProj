@@ -1,25 +1,33 @@
 ﻿using System;
+using System.Windows;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using MySql.Data.MySqlClient;
+using System.Configuration;
+
 
 namespace SQ_TeamClack_TermProj
 {
     class Buyer
     {
+        private string userName;
+        private string password;
+        private string conStr;
+
         private ulong BuyerID;
-        private string firstName;
-        private string lastName;
+        private ulong BuyerName;
+
 
         /*!
          * \brief ...
          * \details
          * \return
-         */
-        public Buyer()
+        */
+        public Buyer(User user)
         {
 
         }
@@ -49,9 +57,31 @@ namespace SQ_TeamClack_TermProj
           * \details
           * \param buyerID - <b>ulong</b> - The ID of the buyer.
           */
-        public void reviewExistingCustomer(ulong buyerID)
+        public string reviewExistingCustomer(string name)
         {
-            //todo reviewExistingCustomer() logic
+            string conStr = ConfigurationManager.ConnectionStrings[conStr].ConnectionString;
+            StringBuilder cmdSB = new StringBuilder("SELECT COUNT(*) FROM Users WHERE Name='" + this.usernameInput + "' AND Password=" + this.passwordInput + ";");
+
+            using (MySqlConnection connection = new MySqlConnection(conStr))
+            {
+
+                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
+                try
+                {
+                    connection.Open();
+                    // store and return string
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
+            }
         }
 
         /*!

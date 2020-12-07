@@ -9,16 +9,17 @@ namespace SQ_TeamClack_TermProj
     class Admin
     {
         private ulong AdminID;
-        private string firstName;
-        private string lastName;
+        private string userName;
+        private string password;
 
         /*!
          * \brief ...
          * \details
          */
-        public Admin()
+        public Admin(string userName, string password)
         {
-
+            this.userName = userName;
+            this.password = password;
         }
 
         /*!

@@ -26,7 +26,7 @@ namespace SQ_TeamClack_TermProject
         private bool orderValid = false;
         private User localUser;
         private Order order;
-
+        
 
         public buyer_OrderDisplay(User localUser, contractParams param)
         {

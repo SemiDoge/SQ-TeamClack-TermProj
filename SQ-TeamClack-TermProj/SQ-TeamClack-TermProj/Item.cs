@@ -16,7 +16,7 @@ namespace SQ_TeamClack_TermProj
         /*!
          * \brief CONSTRUCTOR
          * \details
-         */
+        */
         public Item()
         {
 

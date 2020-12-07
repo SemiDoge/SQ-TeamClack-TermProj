@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace testUI
+namespace SQ_TeamClack_TermProj
 {
     public class Contract
     {
-        public string clientName { get; set; }
-        public string origin { get; set; }
-        public string destination { get; set; }
-        public string products { get; set; }
+        private string clientName   { get; set; }
+        private string origin       { get; set; }
+        private string destination  { get; set; }
+        private string products     { get; set; }
     }
 }
