@@ -208,6 +208,7 @@ namespace SQ_TeamClack_TermProj
          * \param destination - <b>string</b> -
          * \param job_type - <b>int</b> -
         */
+<<<<<<< Updated upstream
 <<<<<<< HEAD
         private invoiceOutParams calculateTotalTravelTime(string origin, string destination, int quantity,int job_type)
         {
@@ -229,6 +230,12 @@ namespace SQ_TeamClack_TermProj
                     break;
             }
 >>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
+=======
+        private invoiceOutParams calculateTotalTravelTime(string origin, string destination, int quantity,int job_type)
+        {
+            //string[] cities = { "Windsor", "London", "Hamilton", "Toronto", "Oshawa", "Belleville", "Kingston", "Ottawa" };
+            invoiceOutParams ret;
+>>>>>>> Stashed changes
 
             contractParams order = (contractParams)orderList.SelectedItem;
 
@@ -375,8 +382,11 @@ namespace SQ_TeamClack_TermProj
                             break;
                     }
 
+<<<<<<< Updated upstream
 =======
 >>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
+=======
+>>>>>>> Stashed changes
                 }
             }
             else if (originInt > destinationInt)
@@ -437,6 +447,7 @@ namespace SQ_TeamClack_TermProj
                             intTime = intTime + time + 2.0;
                             break;
                     }
+<<<<<<< Updated upstream
                 }
             }
 
@@ -452,6 +463,39 @@ namespace SQ_TeamClack_TermProj
                     rateCost = (0.2995 * distance) * quantity;
                     break;
             }
+=======
+                }
+            }
+
+            double rateCost = 0;
+
+            //Job_Type = Values are ‘0’ for FTL, ‘1’ for LTL
+            switch (job_type)
+            {
+                case 0:
+                    rateCost = 4.985 * distance;
+                    break;
+                case 1:
+                    rateCost = (0.2995 * distance) * quantity;
+                    break;
+            }
+
+            double surchargeCost = 0.0;
+
+            if (intTime > 24)
+            {
+                for (int i = 0; i < intTime; i += 24)
+                {
+                    surchargeCost += 150;
+                }
+            }
+
+            double totalCost = surchargeCost + rateCost;
+
+            ret = new invoiceOutParams { travelTime = time, travelIntTime = intTime, travelDist = distance, surchargeCost = surchargeCost, totalRateCost = rateCost, totalFinalCost = totalCost  };
+
+            return ret;
+>>>>>>> Stashed changes
 
             double surchargeCost = 0.0;
 

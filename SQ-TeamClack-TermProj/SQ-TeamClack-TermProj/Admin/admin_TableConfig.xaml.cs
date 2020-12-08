@@ -1,17 +1,24 @@
 <<<<<<< HEAD
 ﻿using System;
+<<<<<<< Updated upstream
 =======
 ﻿using MySql.Data.MySqlClient;
 using System;
 >>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
+=======
+>>>>>>> Stashed changes
 using System.Configuration;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 using MySql.Data.MySqlClient;
 =======
 >>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
+=======
+using MySql.Data.MySqlClient;
+>>>>>>> Stashed changes
 
 namespace SQ_TeamClack_TermProj
 {

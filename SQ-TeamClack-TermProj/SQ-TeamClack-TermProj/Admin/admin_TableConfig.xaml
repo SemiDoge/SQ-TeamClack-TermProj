@@ -13,12 +13,16 @@
         <ListView Name="routeList" HorizontalAlignment="Left" Height="406" Margin="45,95,0,0" VerticalAlignment="Top" Width="785">
             <ListView.View>
                 <GridView>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
                     <GridViewColumn Header="Destination" DisplayMemberBinding="{Binding destination}" Width="150"/>
                     <GridViewColumn Header="Distance" DisplayMemberBinding="{Binding distance}" Width="150"/>
                     <GridViewColumn Header="Time" DisplayMemberBinding="{Binding time}" Width="90"/>
                     <GridViewColumn Header="West" DisplayMemberBinding="{Binding west}" Width="150"/>
                     <GridViewColumn Header="East" DisplayMemberBinding="{Binding east}" Width="150"/>
+<<<<<<< Updated upstream
 =======
                     <GridViewColumn Header="Carrier Name" DisplayMemberBinding="{Binding carrierName}" Width="150" />
                     <GridViewColumn Header="City Name" DisplayMemberBinding="{Binding FTLA}" Width="150" />
@@ -28,6 +32,8 @@
                     <GridViewColumn Header="LTLRate" DisplayMemberBinding="{Binding LTLRate}" Width="100" />
                     <GridViewColumn Header="reefCharge" DisplayMemberBinding="{Binding reefCharge}" Width="100" />
 >>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
+=======
+>>>>>>> Stashed changes
                 </GridView>
             </ListView.View>
         </ListView>

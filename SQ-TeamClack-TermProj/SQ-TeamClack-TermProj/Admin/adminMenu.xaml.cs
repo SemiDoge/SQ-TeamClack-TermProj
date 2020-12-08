@@ -24,6 +24,7 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
+<<<<<<< Updated upstream
 <<<<<<< HEAD
          * \brief This handler handles when the user clicks the "Backup" button.
          * \details This handler brings up the admin backup button page.
@@ -31,6 +32,10 @@ namespace SQ_TeamClack_TermProj
          * \brief This handler changes the to the
          * \details
 >>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
+=======
+         * \brief This handler handles when the user clicks the "Backup" button.
+         * \details This handler brings up the admin backup button page.
+>>>>>>> Stashed changes
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
@@ -42,6 +47,7 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
+<<<<<<< Updated upstream
 <<<<<<< HEAD
          * \brief This handler handles when the user clicks the "Carrier" button.
          * \details This handler brings up the admin backup button page. 
@@ -49,6 +55,10 @@ namespace SQ_TeamClack_TermProj
          * \brief
          * \details
 >>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
+=======
+         * \brief This handler handles when the user clicks the "Carrier" button.
+         * \details This handler brings up the admin backup button page. 
+>>>>>>> Stashed changes
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
