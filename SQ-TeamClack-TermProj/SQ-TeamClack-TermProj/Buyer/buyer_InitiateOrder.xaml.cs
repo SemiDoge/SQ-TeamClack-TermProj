@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Configuration;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
-using System.Configuration;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -34,6 +24,7 @@ namespace SQ_TeamClack_TermProj
          * \details This constructor initializes all the properties that are needed in order to use the Initiate order page.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
+
         public buyer_InitiateOrder(User localUser)
         {
             InitializeComponent();
@@ -49,6 +40,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void connectDataBTN_Click(object sender, RoutedEventArgs e)
         {
             // Connect to database
@@ -56,30 +48,28 @@ namespace SQ_TeamClack_TermProj
             StringBuilder cmdSB = new StringBuilder("SELECT Client_Name, Job_Type, Quantity, Origin, Destination, Van_Type FROM Contract;");
             MySqlDataReader reader = null;
 
-
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
-
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
                 try
                 {
                     connection.Open();
-                    databaseConnected = true; // bool that handles 
+                    databaseConnected = true; // bool that handles
                     localUser.setOrderProgress(true);
                     reader = cmd.ExecuteReader();
                     // Once connected, fill textbox with information
                     while (reader.Read())
                     {
-                        databaseView.Items.Add(new contractParams { 
+                        databaseView.Items.Add(new contractParams
+                        {
                             clientName = reader["Client_Name"].ToString(),
                             jobType = int.Parse(reader["Job_Type"].ToString()),
-                            quantity = int.Parse(reader["Quantity"].ToString()), 
-                            origin = reader["Origin"].ToString(), 
-                            destination = reader["Destination"].ToString(), 
+                            quantity = int.Parse(reader["Quantity"].ToString()),
+                            origin = reader["Origin"].ToString(),
+                            destination = reader["Destination"].ToString(),
                             vanType = int.Parse(reader["Van_Type"].ToString())
                         });
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -89,9 +79,7 @@ namespace SQ_TeamClack_TermProj
                 {
                     connection.Close();
                 }
-
             }
-
 
             // Once bool is changed, display database in listview box
             //tommy
@@ -104,16 +92,15 @@ namespace SQ_TeamClack_TermProj
             }
         }
 
-
         /*!
          * \brief DISABLED - This handler handles when the user clicks the "Review Customer" button.
-         * \details This handler is superfluous as it would take the user back to the page they are currently on. 
+         * \details This handler is superfluous as it would take the user back to the page they are currently on.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void InitiateOrderBTN_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         /*!
@@ -122,6 +109,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Orders page
@@ -144,9 +132,7 @@ namespace SQ_TeamClack_TermProj
                 buyer_ReviewOrders reviewOrders = new buyer_ReviewOrders(localUser);
                 this.NavigationService.Navigate(reviewOrders);
             }
-
         }
-
 
         /*!
          * \brief This handler handles when the user clicks the "Review Customers" button.
@@ -154,6 +140,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Customers page
@@ -178,13 +165,13 @@ namespace SQ_TeamClack_TermProj
             }
         }
 
-
         /*!
          * \brief This handler is an event handler for the logout button.
          * \details This handler is to allow the user to navigate back to the login page and log out. This handler needs to also make sure that the user means to leave the order creation process, in progress.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
             // Return to login page
@@ -215,6 +202,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void createOrderBTN_Click(object sender, RoutedEventArgs e)
         {
             // Validate an order has been selected
@@ -250,6 +238,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>SelectionChangedEventArgs</b>
         */
+
         private void databaseView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             contractParams s = (contractParams)databaseView.SelectedItem;

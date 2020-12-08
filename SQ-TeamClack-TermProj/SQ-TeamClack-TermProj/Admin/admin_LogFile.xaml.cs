@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -20,14 +8,15 @@ namespace SQ_TeamClack_TermProj
     /// </summary>
     public partial class admin_LogFile : Window
     {
-        User localUser;
+        private User localUser;
 
         /*!
-         * \brief 
-         * \details 
+         * \brief
+         * \details
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         public admin_LogFile(User localUser)
         {
             InitializeComponent();

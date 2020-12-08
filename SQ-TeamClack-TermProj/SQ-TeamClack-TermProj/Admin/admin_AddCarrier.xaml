@@ -8,17 +8,17 @@
         Title="addCustomerWindow" Height="400.976" Width="298.813" ResizeMode="NoResize">
     <StackPanel>
         <TextBlock Text="Please fill out the following information" HorizontalAlignment="Center" FontSize="15"
-                   Margin="12" FontFamily="Arial"/>
-        <Label Content="Carrier Name" HorizontalAlignment="Center" FontSize="15" Margin="96,4,99,2"/>
-        <TextBox x:Name="carrierNameInput" Width="150" Height="20" HorizontalAlignment="Center" Margin="0,5"/>
-        <Label Content="City" HorizontalAlignment="Center" FontSize="15"/>
-        <TextBox x:Name="cityInput" Width="150" Height="20" HorizontalAlignment="Center"/>
-        <Label Content="FTL Rate" HorizontalAlignment="Center" FontSize="15"/>
-        <TextBox x:Name="ftlRateInput" Height="23" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="72,0,71,0" Width="150"/>
-        <Label Content="LTL Rate" HorizontalAlignment="Center" FontSize="15"/>
-        <TextBox x:Name="ltlRateInput" Height="23" TextWrapping="Wrap" HorizontalAlignment="Center" Width="150"/>
-        <Label Content="Reef Charge" HorizontalAlignment="Center" FontSize="15"/>
-        <TextBox x:Name="reefChargeInput" Height="23" TextWrapping="Wrap" HorizontalAlignment="Center" Width="150"/>
-        <Button x:Name="submitBTN" Content="Submit" Margin="96,15,88,0" Click="submitBTN_Click"/>
+                   Margin="12" FontFamily="Arial" />
+        <Label Content="Carrier Name" HorizontalAlignment="Center" FontSize="15" Margin="96,4,99,2" />
+        <TextBox x:Name="carrierNameInput" Width="150" Height="20" HorizontalAlignment="Center" Margin="0,5" />
+        <Label Content="City" HorizontalAlignment="Center" FontSize="15" />
+        <TextBox x:Name="cityInput" Width="150" Height="20" HorizontalAlignment="Center" />
+        <Label Content="FTL Rate" HorizontalAlignment="Center" FontSize="15" />
+        <TextBox x:Name="ftlRateInput" Height="23" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="72,0,71,0" Width="150" />
+        <Label Content="LTL Rate" HorizontalAlignment="Center" FontSize="15" />
+        <TextBox x:Name="ltlRateInput" Height="23" TextWrapping="Wrap" HorizontalAlignment="Center" Width="150" />
+        <Label Content="Reef Charge" HorizontalAlignment="Center" FontSize="15" />
+        <TextBox x:Name="reefChargeInput" Height="23" TextWrapping="Wrap" HorizontalAlignment="Center" Width="150" />
+        <Button x:Name="submitBTN" Content="Submit" Margin="96,15,88,0" Click="submitBTN_Click" />
     </StackPanel>
 </Window>

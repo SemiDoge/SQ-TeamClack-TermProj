@@ -1,21 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
+using MySql.Data.MySqlClient;
+using System;
+using System.Configuration;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-using MySql.Data.MySqlClient;
-using System.Configuration;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -24,13 +12,14 @@ namespace SQ_TeamClack_TermProj
     /// </summary>
     public partial class admin_Backup : Page
     {
-        User localUser;
+        private User localUser;
 
         /*!
-         * \brief CONSTRUCTOR - 
-         * \details 
+         * \brief CONSTRUCTOR -
+         * \details
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
+
         public admin_Backup(User localUser)
         {
             InitializeComponent();
@@ -41,10 +30,11 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief 
+         * \brief
          * \details
          * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
         */
+
         private void LogButton_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog logFile = new SaveFileDialog();
@@ -58,10 +48,11 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief 
+         * \brief
          * \details
          * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
         */
+
         private void ConfigButton_Click(object sender, RoutedEventArgs e)
         {
             admin_IPConfig ipconfig = new admin_IPConfig(localUser);
@@ -71,10 +62,11 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief 
+         * \brief
          * \details
          * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
         */
+
         private void OpenLogButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -89,10 +81,11 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief 
+         * \brief
          * \details
          * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
         */
+
         private void BackupBtn_Click(object sender, RoutedEventArgs e)
         {
             SaveFileDialog logFile = new SaveFileDialog();
@@ -106,10 +99,11 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief 
+         * \brief
          * \details
          * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
         */
+
         private void dumpDB(string filePath)
         {
             // Connect to database
@@ -126,7 +120,6 @@ namespace SQ_TeamClack_TermProj
                             cmd.Connection = connection;
                             connection.Open();
                             mb.ExportToFile(filePath);
-
                         }
                         catch (Exception ex)
                         {

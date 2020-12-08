@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Configuration;
+using System.Text;
 using System.Windows;
 
 namespace SQ_TeamClack_TermProj
 {
-    class Order
+    internal class Order
     {
         private ulong OrderID;
         private DateTime orderDate;
@@ -23,13 +20,14 @@ namespace SQ_TeamClack_TermProj
         private int vanType;
 
         //properties
-        public ulong ORDERID { get { return OrderID; }}
+        public ulong ORDERID { get { return OrderID; } }
+
         public string CUSTOMERNAME { get { return customerName; } }
         public int JOBTYPE { get { return jobType; } }
-        public int QUANTITY{ get { return quantity; } }
-        public string ORIGIN{ get { return origin; } }
-        public string DESTINATION{ get { return destination; } }
-        public int VANTYPE{ get { return vanType; } }
+        public int QUANTITY { get { return quantity; } }
+        public string ORIGIN { get { return origin; } }
+        public string DESTINATION { get { return destination; } }
+        public int VANTYPE { get { return vanType; } }
         public bool MARKEDFORACTION { get { return markedForAction; } set { markedForAction = value; } }
 
         /*!
@@ -37,6 +35,7 @@ namespace SQ_TeamClack_TermProj
          * \details
          * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
          */
+
         public Order(contractParams param)
         {
             Random rand = new Random();
@@ -51,8 +50,6 @@ namespace SQ_TeamClack_TermProj
             origin = param.origin;
             destination = param.destination;
             vanType = param.vanType;
-
-
         }
 
         /*!
@@ -60,6 +57,7 @@ namespace SQ_TeamClack_TermProj
          * \details This function returns a copy of the time stamp that was created when the order was created.
          * \return <b>DateTime</b> - This returns a time stamp.
          */
+
         public DateTime getTimeStamp()
         {
             DateTime rDt = new DateTime();
@@ -75,6 +73,7 @@ namespace SQ_TeamClack_TermProj
          * \param orderID -<b>ulong</b>- The ID of the order.
          * \return <b>string</b> - A string that lists out all of the important order information.
          */
+
         public string queryOrder(ulong orderID)
         {
             StringBuilder strBr = new StringBuilder();
@@ -84,21 +83,21 @@ namespace SQ_TeamClack_TermProj
             return strBr.ToString();
         }
 
-
         /*!
          * \brief This function calculates the sub-total of the order.
          * \details
         */
+
         public void calculateSubTotal()
         {
             //todo calculateSubTotal() logic
         }
 
-
         /*!
          * \brief This function calculates the sub-total of the order.
          * \details
         */
+
         public void commitOrder(string userConStr)
         {
             string conStr = ConfigurationManager.ConnectionStrings[userConStr].ConnectionString;
@@ -106,13 +105,11 @@ namespace SQ_TeamClack_TermProj
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
-
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
                 try
                 {
                     connection.Open();
                     cmd.ExecuteNonQuery();
-
                 }
                 catch (Exception ex)
                 {
@@ -122,7 +119,6 @@ namespace SQ_TeamClack_TermProj
                 {
                     connection.Close();
                 }
-
             }
         }
     }

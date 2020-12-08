@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Configuration;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
-using System.Configuration;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -29,6 +19,7 @@ namespace SQ_TeamClack_TermProj
          * \details This constructor constructs the login page and sets the page's localUser to the localUser passed in as a parameter.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
+
         public loginPage(User localUser)
         {
             InitializeComponent();
@@ -42,6 +33,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void SubmitBTN_Click(object sender, RoutedEventArgs e)
         {
             bool usernameValid = false;
@@ -85,17 +77,18 @@ namespace SQ_TeamClack_TermProj
                         adminMenu adminM = new adminMenu(localUser);
                         this.NavigationService.Navigate(adminM);
                         break;
+
                     case "PlannerAcc":
                         // Go to planner page
 
                         break;
+
                     case "BuyerAcc":
                         // Go to buyer page
                         buyerMenu buyerM = new buyerMenu(localUser);
                         this.NavigationService.Navigate(buyerM);
                         break;
                 }
-
             }
             else
             {
@@ -108,6 +101,7 @@ namespace SQ_TeamClack_TermProj
          * \details This function queries the database to verfiy the login details of the user that has signed in.
          * \param <b>void</b>
         */
+
         public bool verifyCredentials()
         {
             bool success = false;
@@ -117,7 +111,6 @@ namespace SQ_TeamClack_TermProj
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
-
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
                 try
                 {
@@ -151,6 +144,7 @@ namespace SQ_TeamClack_TermProj
          * \details This function queries the database and using the role associated with each user determines the connection string that has their appropiate premissions.
          * \param <b>void</b>
         */
+
         private string getConStr()
         {
             int role = 0;
@@ -159,7 +153,6 @@ namespace SQ_TeamClack_TermProj
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
-
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
                 try
                 {
@@ -174,17 +167,19 @@ namespace SQ_TeamClack_TermProj
                 {
                     connection.Close();
                 }
-
             }
 
             switch (role)
             {
-                case 0: //Admin 
+                case 0: //Admin
                     return "AdminAcc";
+
                 case 1: //Buyer
                     return "BuyerAcc";
+
                 case 2: //Planner
                     return "PlannerAcc";
+
                 default:
                     return "loginAcc";
             }

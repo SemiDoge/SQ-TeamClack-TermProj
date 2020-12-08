@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace SQ_TeamClack_TermProj
 {
     // Purpose: To hold information tied to the current user of the program
@@ -24,13 +18,14 @@ namespace SQ_TeamClack_TermProj
 
         public string USERNAME { get { return userName; } set { userName = value; } }
         public string PASSWORD { get { return password; } set { password = value; } }
-        public string CONSTR   { get { return conStr; }   set { conStr = value; } }
+        public string CONSTR { get { return conStr; } set { conStr = value; } }
 
         /*!
          * \brief This function logs the user out.
          * \details This functions clears all of the information associated with the logged
          * \return <b>void</b>
         */
+
         public void logout()
         {
             this.userName = "";
@@ -43,6 +38,7 @@ namespace SQ_TeamClack_TermProj
         {
             orderInProgress = input;
         }
+
         public bool getOrderProgress()
         {
             return orderInProgress;
