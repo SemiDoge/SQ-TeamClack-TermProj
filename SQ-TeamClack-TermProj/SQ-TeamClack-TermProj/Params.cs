@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SQ_TeamClack_TermProj
+﻿namespace SQ_TeamClack_TermProj
 {
     public struct contractParams
     {
@@ -29,7 +23,6 @@ namespace SQ_TeamClack_TermProj
         public double FTLRate { get; set; }
         public double LTLRate { get; set; }
         public double reefCharge { get; set; }
-
     }
 
     public struct routeParams

@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -20,13 +8,14 @@ namespace SQ_TeamClack_TermProj
     /// </summary>
     public partial class adminMenu : Page
     {
-        User localUser;
+        private User localUser;
 
         /*!
          * \brief CONSTRUCTOR - This constructor constructs the IP Config page.
          * \details This constructor initializes all the properties that are needed in order to use the IP Config page.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
+
         public adminMenu(User localUser)
         {
             InitializeComponent();
@@ -35,11 +24,12 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief This handler changes the to the 
-         * \details 
+         * \brief This handler changes the to the
+         * \details
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void BackupButton_Click(object sender, RoutedEventArgs e)
         {
             admin_Backup p1 = new admin_Backup(localUser);
@@ -47,11 +37,12 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief 
-         * \details 
+         * \brief
+         * \details
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void CarrierButton_Click(object sender, RoutedEventArgs e)
         {
             admin_CarrierConfig p1 = new admin_CarrierConfig(localUser);
@@ -59,11 +50,12 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief 
-         * \details 
+         * \brief
+         * \details
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void TableButton_Click(object sender, RoutedEventArgs e)
         {
             admin_TableConfig p1 = new admin_TableConfig(localUser);

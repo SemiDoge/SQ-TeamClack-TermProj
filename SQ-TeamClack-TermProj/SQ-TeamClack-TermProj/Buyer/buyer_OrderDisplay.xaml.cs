@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Configuration;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
-using System.Configuration;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -31,6 +21,7 @@ namespace SQ_TeamClack_TermProj
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
          * \param param - <b>contractParams</b> - This parameter structure contains all of the contract information taken from the contracts page.
         */
+
         public buyer_OrderDisplay(User localUser, contractParams param)
         {
             InitializeComponent();
@@ -57,6 +48,7 @@ namespace SQ_TeamClack_TermProj
          * \details This methos populates the cityInfo CB by querying the CarrierCities table in the database for all of the unique city names.
          * \param <b>void</b>
         */
+
         private void fillCityComboBox()
         {
             string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
@@ -65,7 +57,6 @@ namespace SQ_TeamClack_TermProj
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
-
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
                 try
                 {
@@ -84,7 +75,6 @@ namespace SQ_TeamClack_TermProj
                 {
                     connection.Close();
                 }
-
             }
         }
 
@@ -99,6 +89,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Customers page
@@ -129,6 +120,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Orders page
@@ -159,6 +151,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
             // Return to login page
@@ -184,6 +177,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void orderSubmitBTN_Click(object sender, RoutedEventArgs e)
         {
             if ((string)cityInput.SelectedItem == order.ORIGIN)
@@ -193,7 +187,6 @@ namespace SQ_TeamClack_TermProj
 
                 using (MySqlConnection connection = new MySqlConnection(conStr))
                 {
-
                     MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
                     try
                     {
@@ -208,7 +201,6 @@ namespace SQ_TeamClack_TermProj
                     {
                         connection.Close();
                     }
-
                 }
 
                 buyer_InitiateOrder buyerOrderMenu = new buyer_InitiateOrder(localUser);
@@ -226,6 +218,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>SelectionChangedEventArgs</b>
         */
+
         private void cityInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             city.Content = cityInput.SelectedItem;

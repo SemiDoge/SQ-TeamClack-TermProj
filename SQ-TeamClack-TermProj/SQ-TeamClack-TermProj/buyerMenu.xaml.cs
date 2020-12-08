@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -20,12 +8,12 @@ namespace SQ_TeamClack_TermProj
     /// </summary>
     public partial class buyerMenu : Page
     {
-        User localUser;
+        private User localUser;
+
         public buyerMenu(User localUser)
         {
             InitializeComponent();
             UsernameLabel.Content = localUser.USERNAME;
-
         }
 
         private void logoutButton_Click(object sender, RoutedEventArgs e)
@@ -33,7 +21,6 @@ namespace SQ_TeamClack_TermProj
             // Return to login page
             loginPage login = new loginPage(localUser);
             this.NavigationService.Navigate(login);
-
         }
 
         private void InitiateOrderBTN_Click(object sender, RoutedEventArgs e)

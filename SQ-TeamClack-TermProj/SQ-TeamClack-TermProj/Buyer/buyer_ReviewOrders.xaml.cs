@@ -1,21 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.Win32;
+using MySql.Data.MySqlClient;
+using System;
+using System.Configuration;
+using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Microsoft.Win32;
-using MySql.Data.MySqlClient;
-using System.Configuration;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -32,6 +23,7 @@ namespace SQ_TeamClack_TermProj
          * \details This constructor constructs the review orders page and sets the page's localUser to the localUser passed in as a parameter.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
+
         public buyer_ReviewOrders(User localUser)
         {
             InitializeComponent();
@@ -47,6 +39,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void MyWindow_Loaded(object sender, RoutedEventArgs e)
         {
             queryOpenOrders();
@@ -54,10 +47,11 @@ namespace SQ_TeamClack_TermProj
 
         /*!
          * \brief This handler handles when the user clicks the "Initiate Order" button.
-         * \details This handler is superfluous as it would take the user back to the page they are currently on. 
+         * \details This handler is superfluous as it would take the user back to the page they are currently on.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void InitiateOrderBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to initiate order page
@@ -71,6 +65,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Customers page
@@ -84,6 +79,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
             queryOpenOrders();
@@ -95,9 +91,10 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
-            //log the user out 
+            //log the user out
             localUser.logout();
 
             // Return to login page
@@ -110,6 +107,7 @@ namespace SQ_TeamClack_TermProj
          * \details This method queries the Orders table from the Omnicorp database via the localuser connection string.
          * \param <b>void</b>
         */
+
         private void queryOpenOrders()
         {
             string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
@@ -118,7 +116,6 @@ namespace SQ_TeamClack_TermProj
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
-
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
                 try
                 {
@@ -127,7 +124,6 @@ namespace SQ_TeamClack_TermProj
 
                     while (reader.Read())
                     {
-
                         orderList.Items.Add(new contractParams
                         {
                             orderID = ulong.Parse(reader["OrderID"].ToString()),
@@ -137,7 +133,6 @@ namespace SQ_TeamClack_TermProj
                             MARKEDFORACTION = bool.Parse(reader["MarkedForAction"].ToString())
                         });
                     }
-
                 }
                 catch (Exception ex)
                 {
@@ -150,25 +145,25 @@ namespace SQ_TeamClack_TermProj
             }
         }
 
-
         /*!
          * \brief This handler handles the logic behind a selection in the List View.
          * \details This handler handles what happens when the user selects an contract entry in the List View.
          * \param sender <b>object</b>
          * \param e <b>SelectionChangedEventArgs</b>
          */
+
         private void orderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             p = (contractParams)orderList.SelectedItem;
         }
 
-
         /*!
          * \brief This handler handles the logic behind clicking the Invoice Order button.
-         * \details 
+         * \details
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void invoiceOrderBTN_Click(object sender, RoutedEventArgs e)
         {
             StreamWriter sw;
@@ -198,11 +193,12 @@ namespace SQ_TeamClack_TermProj
 
         /*!
          * \brief This handler handles the logic behind clicking the Invoice Order button.
-         * \details 
+         * \details
          * \param origin - <b>string</b> -
          * \param destination - <b>string</b> -
          * \param job_type - <b>int</b> -
         */
+
         private Object[] calculateTotalTravelTime(string origin, string destination, int job_type)
         {
             //string[] cities = { "Windsor", "London", "Hamilton", "Toronto", "Oshawa", "Belleville", "Kingston", "Ottawa" };
@@ -212,6 +208,7 @@ namespace SQ_TeamClack_TermProj
                 case 0:
 
                     break;
+
                 case 1:
                     break;
             }
@@ -226,57 +223,69 @@ namespace SQ_TeamClack_TermProj
             {
                 case "Windsor":
                     originInt = 0;
-                    break;                
+                    break;
+
                 case "London":
                     originInt = 1;
-                    break;                
+                    break;
+
                 case "Hamilton":
                     originInt = 2;
-                    break;                
+                    break;
+
                 case "Toronto":
                     originInt = 3;
-                    break;                
+                    break;
+
                 case "Oshawa":
                     originInt = 4;
-                    break;                
+                    break;
+
                 case "Belleville":
                     originInt = 5;
-                    break;                
+                    break;
+
                 case "Kingston":
                     originInt = 6;
-                    break;                
+                    break;
+
                 case "Ottawa":
                     originInt = 7;
                     break;
             }
 
-
             int destinationInt = 0;
-
 
             switch (destination)
             {
                 case "Windsor":
                     destinationInt = 0;
                     break;
+
                 case "London":
                     destinationInt = 1;
                     break;
+
                 case "Hamilton":
                     destinationInt = 2;
                     break;
+
                 case "Toronto":
                     destinationInt = 3;
                     break;
+
                 case "Oshawa":
                     destinationInt = 4;
                     break;
+
                 case "Belleville":
                     destinationInt = 5;
                     break;
+
                 case "Kingston":
                     destinationInt = 6;
                     break;
+
                 case "Ottawa":
                     destinationInt = 7;
                     break;
@@ -297,37 +306,43 @@ namespace SQ_TeamClack_TermProj
                         case 0:
                             distance += 191;
                             time += 2.5;
-                            break;                        
+                            break;
+
                         case 1:
                             distance += 128;
                             time += 1.75;
-                            break;                        
+                            break;
+
                         case 2:
                             distance += 68;
                             time += 1.25;
-                            break;                        
+                            break;
+
                         case 3:
                             distance += 60;
                             time += 1.3;
-                            break;                        
+                            break;
+
                         case 4:
                             distance += 134;
                             time += 1.65;
-                            break;                        
+                            break;
+
                         case 5:
                             distance += 82;
                             time += 1.2;
-                            break;                        
+                            break;
+
                         case 6:
                             distance += 196;
                             time += 2.5;
-                            break;                        
+                            break;
+
                         case 7:
                             distance += 0;
                             time += 0;
                             break;
                     }
-
                 }
             }
             else if (originInt > destinationInt)
@@ -342,30 +357,37 @@ namespace SQ_TeamClack_TermProj
                             distance += 191;
                             time += 2.5;
                             break;
+
                         case 1:
                             distance += 128;
                             time += 1.75;
                             break;
+
                         case 2:
                             distance += 68;
                             time += 1.25;
                             break;
+
                         case 3:
                             distance += 60;
                             time += 1.3;
                             break;
+
                         case 4:
                             distance += 134;
                             time += 1.65;
                             break;
+
                         case 5:
                             distance += 82;
                             time += 1.2;
                             break;
+
                         case 6:
                             distance += 196;
                             time += 2.5;
                             break;
+
                         case 7:
                             distance += 0;
                             time += 0;
@@ -377,8 +399,6 @@ namespace SQ_TeamClack_TermProj
             Object[] temp = { distance, time };
 
             return temp;
-
         }
-
     }
 }

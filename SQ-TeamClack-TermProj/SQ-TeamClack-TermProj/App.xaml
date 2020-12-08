@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:SQ_TeamClack_TermProj"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
     </Application.Resources>
 </Application>

@@ -9,15 +9,14 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF363636" Offset="0"/>
-                <GradientStop Color="#FF4D4D4D" Offset="1"/>
+                <GradientStop Color="#FF363636" Offset="0" />
+                <GradientStop Color="#FF4D4D4D" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
-        <Label Content="Enter Desired IP Address:" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF"/>
-        <TextBox x:Name="ipbox" HorizontalAlignment="Left" Height="23" Margin="10,47,0,0" TextWrapping="Wrap" Text="000.000.000.000" VerticalAlignment="Top" Width="140" Foreground="Black" Background="#FFBFBFBF"/>
-        <Label Content="Enter Desired Port:" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF"/>
-        <TextBox x:Name="portbox" HorizontalAlignment="Left" Height="23" Margin="10,105,0,0" TextWrapping="Wrap" Text="0000" VerticalAlignment="Top" Width="140" Foreground="Black" Background="#FFBFBFBF"/>
-        <Button Content="Confirm" HorizontalAlignment="Left" Margin="39,154,0,0" VerticalAlignment="Top" Width="87" Click ="ConfirmButton_Click" Background="#FFD4D4D4" BorderBrush="{x:Null}"/>
-
+        <Label Content="Enter Desired IP Address:" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" />
+        <TextBox x:Name="ipbox" HorizontalAlignment="Left" Height="23" Margin="10,47,0,0" TextWrapping="Wrap" Text="000.000.000.000" VerticalAlignment="Top" Width="140" Foreground="Black" Background="#FFBFBFBF" />
+        <Label Content="Enter Desired Port:" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" Foreground="#DDFFFFFF" />
+        <TextBox x:Name="portbox" HorizontalAlignment="Left" Height="23" Margin="10,105,0,0" TextWrapping="Wrap" Text="0000" VerticalAlignment="Top" Width="140" Foreground="Black" Background="#FFBFBFBF" />
+        <Button Content="Confirm" HorizontalAlignment="Left" Margin="39,154,0,0" VerticalAlignment="Top" Width="87" Click ="ConfirmButton_Click" Background="#FFD4D4D4" BorderBrush="{x:Null}" />
     </Grid>
 </Window>

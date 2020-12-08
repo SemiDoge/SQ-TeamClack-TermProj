@@ -9,19 +9,7 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -34,13 +22,13 @@ namespace SQ_TeamClack_TermProj
         private User localUser = new User("login", "");
         public static String logfileLocation;
 
-
         /*!
          * \brief CONSTRUCTOR - This constructor constucts the main window.
          * \details This constructor constructs the main window. This window is a fiction as all it does is initiate some values and
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         public MainWindow()
         {
             InitializeComponent();

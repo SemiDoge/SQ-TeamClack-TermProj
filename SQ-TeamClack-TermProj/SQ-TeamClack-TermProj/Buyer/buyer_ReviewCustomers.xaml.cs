@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Configuration;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MySql.Data.MySqlClient;
-using System.Configuration;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -29,6 +19,7 @@ namespace SQ_TeamClack_TermProj
          * \details This constructor initializes all the properties that are needed in order to use the Review Customers page.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
+
         public buyer_ReviewCustomers(User localUser)
         {
             InitializeComponent();
@@ -44,6 +35,7 @@ namespace SQ_TeamClack_TermProj
          * \details This handler calls the queryCustomers method on load.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
+
         private void MyWindow_Loaded(object sender, RoutedEventArgs e)
         {
             queryCustomers();
@@ -55,6 +47,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void InitiateOrderBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to initiate order page
@@ -64,13 +57,13 @@ namespace SQ_TeamClack_TermProj
 
         /*!
          * \brief DISABLED - This handler handles when the user clicks the "Review Customer" button.
-         * \details This handler is superfluous as it would take the user back to the page they are currently on. 
+         * \details This handler is superfluous as it would take the user back to the page they are currently on.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         /*!
@@ -79,6 +72,7 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Orders page
@@ -86,16 +80,16 @@ namespace SQ_TeamClack_TermProj
             this.NavigationService.Navigate(reviewOrders);
         }
 
-
         /*!
          * \brief This handler is an event handler for the logout button.
          * \details This handler is to allow the user to navigate back to the login page and log out. This handler needs to also make sure that the user means to leave the order creation process, in progress.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
-            //log the user out 
+            //log the user out
             localUser.logout();
 
             // Return to login page
@@ -105,10 +99,11 @@ namespace SQ_TeamClack_TermProj
 
         /*!
          * \brief This handler is an event handler for the "Add Customer" button.
-         * \details This handler queries the 
+         * \details This handler queries the
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
+
         private void addCustomerBTN_Click(object sender, RoutedEventArgs e)
         {
             // Open add customer sub menu
@@ -129,7 +124,6 @@ namespace SQ_TeamClack_TermProj
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
-
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
                 try
                 {
@@ -144,22 +138,20 @@ namespace SQ_TeamClack_TermProj
                 {
                     connection.Close();
                 }
-
             }
 
             //when a new customer is added, delete the on load customer query returns and replace it with a fresh query
             customerList.DataContext = null;
             customerList.Items.Clear();
             queryCustomers();
-
         }
-
 
         /*!
          * \brief This method populates the customerList List View.
          * \details This method queries the unique Customers table of the Omnicorp database, and adds them to the customerList List View.
          * \param <b>void</b>
         */
+
         private void queryCustomers()
         {
             string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
@@ -168,7 +160,6 @@ namespace SQ_TeamClack_TermProj
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
             {
-
                 MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
                 try
                 {
@@ -187,7 +178,6 @@ namespace SQ_TeamClack_TermProj
                 {
                     connection.Close();
                 }
-
             }
         }
     }
