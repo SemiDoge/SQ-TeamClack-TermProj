@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SQ_TeamClack_TermProj
+﻿namespace SQ_TeamClack_TermProj
 {
     public struct contractParams
     {
@@ -29,7 +23,6 @@ namespace SQ_TeamClack_TermProj
         public double FTLRate { get; set; }
         public double LTLRate { get; set; }
         public double reefCharge { get; set; }
-
     }
 
     public struct routeParams
@@ -40,6 +33,7 @@ namespace SQ_TeamClack_TermProj
         public string west { get; set; }
         public string east { get; set; }
     }
+<<<<<<< HEAD
 
     public struct invoiceOutParams
     {
@@ -51,3 +45,6 @@ namespace SQ_TeamClack_TermProj
         public double totalFinalCost { get; set; }
     }
 }
+=======
+}
+>>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e

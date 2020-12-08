@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 ﻿using System;
+=======
+﻿using MySql.Data.MySqlClient;
+using System;
+>>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
 using System.Configuration;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+<<<<<<< HEAD
 using MySql.Data.MySqlClient;
+=======
+>>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
 
 namespace SQ_TeamClack_TermProj
 {

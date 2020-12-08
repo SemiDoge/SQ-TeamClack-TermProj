@@ -8,9 +8,9 @@
         Title="addCustomerWindow" Height="230" Width="300" ResizeMode="NoResize">
     <StackPanel>
         <TextBlock Text="Please fill out the following information" HorizontalAlignment="Center" FontSize="15"
-                   Margin="12" FontFamily="Arial"/>
-        <Label Content="Customer Name:" HorizontalAlignment="Center" FontSize="15" Margin="0,20,3,2"/>
-        <TextBox x:Name="cusNameInput" Width="150" Height="20" HorizontalAlignment="Center" Margin="0,5"/>
-        <Button x:Name="submit" Content="Submit" Width="60" Height ="30" Margin="0,25" Click="submit_Click"/>
+                   Margin="12" FontFamily="Arial" />
+        <Label Content="Customer Name:" HorizontalAlignment="Center" FontSize="15" Margin="0,20,3,2" />
+        <TextBox x:Name="cusNameInput" Width="150" Height="20" HorizontalAlignment="Center" Margin="0,5" />
+        <Button x:Name="submit" Content="Submit" Width="60" Height ="30" Margin="0,25" Click="submit_Click" />
     </StackPanel>
 </Window>
