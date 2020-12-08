@@ -40,4 +40,14 @@ namespace SQ_TeamClack_TermProj
         public string west { get; set; }
         public string east { get; set; }
     }
+
+    public struct invoiceOutParams
+    {
+        public double travelTime { get; set; }
+        public double travelIntTime { get; set; }
+        public int travelDist { get; set; }
+        public double surchargeCost { get; set; }
+        public double totalRateCost { get; set; }
+        public double totalFinalCost { get; set; }
+    }
 }

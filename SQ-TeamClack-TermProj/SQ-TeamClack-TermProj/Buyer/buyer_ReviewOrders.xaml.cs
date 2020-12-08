@@ -50,6 +50,8 @@ namespace SQ_TeamClack_TermProj
         private void MyWindow_Loaded(object sender, RoutedEventArgs e)
         {
             queryOpenOrders();
+            invoiceOrderBTN.IsEnabled = false;
+            ReviewOrdersBTN.IsEnabled = false; 
         }
 
         /*!
@@ -67,7 +69,7 @@ namespace SQ_TeamClack_TermProj
 
         /*!
          * \brief This handler handles when the user clicks the "Review Customers" button.
-         * \details This handler makes to change the page to the review customers page. This handler needs to also make sure that the user means to leave the order creation process, in progress.
+         * \details This handler changes the page to the review customers page. This handler needs to also make sure that the user means to leave the order creation process, in progress.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
@@ -79,14 +81,14 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief This handler handles when the user clicks the "Review Orders" button.
+         * \brief DISABLED - This handler handles when the user clicks the "Review Orders" button.
          * \details This handler calls the queryOpenOrders method.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
-            queryOpenOrders();
+
         }
 
         /*!
@@ -113,7 +115,7 @@ namespace SQ_TeamClack_TermProj
         private void queryOpenOrders()
         {
             string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
-            StringBuilder cmdSB = new StringBuilder("SELECT OrderID, Origin, Destination, MarkedForAction, OrderDate FROM Orders;");
+            StringBuilder cmdSB = new StringBuilder("SELECT OrderID, CustomerName, Origin, Destination, MarkedForAction, Quantity, JobType, OrderDate FROM Orders;");
             MySqlDataReader reader = null;
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
@@ -131,9 +133,12 @@ namespace SQ_TeamClack_TermProj
                         orderList.Items.Add(new contractParams
                         {
                             orderID = ulong.Parse(reader["OrderID"].ToString()),
+                            clientName = reader["CustomerName"].ToString(),
                             orderDate = reader["OrderDate"].ToString(),
                             origin = reader["Origin"].ToString(),
                             destination = reader["Destination"].ToString(),
+                            quantity = int.Parse(reader["Quantity"].ToString()),
+                            jobType = int.Parse(reader["JobType"].ToString()),
                             MARKEDFORACTION = bool.Parse(reader["MarkedForAction"].ToString())
                         });
                     }
@@ -160,6 +165,7 @@ namespace SQ_TeamClack_TermProj
         private void orderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             p = (contractParams)orderList.SelectedItem;
+            invoiceOrderBTN.IsEnabled = true;
         }
 
 
@@ -171,28 +177,32 @@ namespace SQ_TeamClack_TermProj
         */
         private void invoiceOrderBTN_Click(object sender, RoutedEventArgs e)
         {
-            StreamWriter sw;
             StringBuilder sb = new StringBuilder();
             SaveFileDialog invoiceFile = new SaveFileDialog();
             invoiceFile.Filter = "Text file(*.txt)|*.txt|All Files (*.*)|*.*";
             invoiceFile.Title = "Save an Invoice (.txt)";
+
+            var temp = calculateTotalTravelTime(p.origin, p.destination, p.quantity, p.jobType);
 
             sb.Append("========================================================================\n");
             sb.Append("Order Number: " + p.orderID + "\n");
             sb.Append("Customer: " + p.clientName + "\n");
             sb.Append("Origin: " + p.origin + "\n");
             sb.Append("Destination: " + p.destination + "\n");
-            sb.Append("Total Travel Time: " + calculateTotalTravelTime(p.origin, p.destination, p.jobType).ToString() + "\n");
-            sb.Append("Total Intermediary Time: " + +"\n");
-            sb.Append("Total Travel Time: " + +"\n");
-            sb.Append("Total Surcharge Cost: " + +"\n");
-            sb.Append("Total Rate Cost: " + +"\n");
-            sb.Append("Total Final Cost: " + +"\n");
+            sb.Append("Total Travel Time: " + temp.travelTime.ToString() + "\n");
+            sb.Append("Total Intermediary Time: " + temp.travelIntTime.ToString() + "\n");
+            sb.Append("Total Travel Distance: " + temp.travelDist.ToString() +"\n");
+            sb.Append("Total Surcharge Cost: " + temp.surchargeCost + "\n");
+            sb.Append("Total Rate Cost: " + temp.totalRateCost.ToString() + "\n");
+            sb.Append("Total Final Cost: " + temp.totalFinalCost.ToString() +"\n");
             sb.Append("========================================================================");
 
             if (invoiceFile.ShowDialog() == true)
             {
-                sw = new StreamWriter(invoiceFile.FileName);
+                using (StreamWriter sw = new StreamWriter(invoiceFile.FileName))
+                {
+                    sw.WriteLine(sb.ToString());
+                }
             }
         }
 
@@ -203,24 +213,18 @@ namespace SQ_TeamClack_TermProj
          * \param destination - <b>string</b> -
          * \param job_type - <b>int</b> -
         */
-        private Object[] calculateTotalTravelTime(string origin, string destination, int job_type)
+        private invoiceOutParams calculateTotalTravelTime(string origin, string destination, int quantity,int job_type)
         {
             //string[] cities = { "Windsor", "London", "Hamilton", "Toronto", "Oshawa", "Belleville", "Kingston", "Ottawa" };
-
-            switch (job_type)
-            {
-                case 0:
-
-                    break;
-                case 1:
-                    break;
-            }
+            invoiceOutParams ret;
 
             contractParams order = (contractParams)orderList.SelectedItem;
 
             string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
 
             int originInt = 0;
+
+            
 
             switch (origin)
             {
@@ -285,6 +289,7 @@ namespace SQ_TeamClack_TermProj
             int travelDifference = 0;
             int distance = 0;
             double time = 0.0;
+            double intTime = 0.0;
 
             if (originInt < destinationInt)
             {
@@ -328,13 +333,23 @@ namespace SQ_TeamClack_TermProj
                             break;
                     }
 
+                    switch (job_type)
+                    {
+                        case 0:
+                            intTime += time;
+                            break;
+                        case 1:
+                            intTime = intTime + time + 2.0;
+                            break;
+                    }
+
                 }
             }
             else if (originInt > destinationInt)
             {
                 travelDifference = originInt - destinationInt;
 
-                for (int i = originInt; i < travelDifference; i--)
+                for (int i = originInt; i > 0; i--)
                 {
                     switch (i)
                     {
@@ -371,12 +386,47 @@ namespace SQ_TeamClack_TermProj
                             time += 0;
                             break;
                     }
+
+                    switch (job_type)
+                    {
+                        case 0:
+                            intTime += time;
+                            break;
+                        case 1:
+                            intTime = intTime + time + 2.0;
+                            break;
+                    }
                 }
             }
 
-            Object[] temp = { distance, time };
+            double rateCost = 0;
 
-            return temp;
+            //Job_Type = Values are ‘0’ for FTL, ‘1’ for LTL
+            switch (job_type)
+            {
+                case 0:
+                    rateCost = 4.985 * distance;
+                    break;
+                case 1:
+                    rateCost = (0.2995 * distance) * quantity;
+                    break;
+            }
+
+            double surchargeCost = 0.0;
+
+            if (intTime > 24)
+            {
+                for (int i = 0; i < intTime; i += 24)
+                {
+                    surchargeCost += 150;
+                }
+            }
+
+            double totalCost = surchargeCost + rateCost;
+
+            ret = new invoiceOutParams { travelTime = time, travelIntTime = intTime, travelDist = distance, surchargeCost = surchargeCost, totalRateCost = rateCost, totalFinalCost = totalCost  };
+
+            return ret;
 
         }
 

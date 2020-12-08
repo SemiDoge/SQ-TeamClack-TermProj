@@ -46,9 +46,12 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Order Number" Width="150" DisplayMemberBinding="{Binding orderID}"/>
-                    <GridViewColumn Header="Order Date" Width="250" DisplayMemberBinding="{Binding clientName}"/>
-                    <GridViewColumn Header="Origin" Width="150" DisplayMemberBinding="{Binding origin}"/>
-                    <GridViewColumn Header="Destination" Width="150" DisplayMemberBinding="{Binding destination}"/>
+                    <GridViewColumn Header="Client Name" Width="150" DisplayMemberBinding="{Binding clientName}"/>
+                    <GridViewColumn Header="Order Date" Width="150" DisplayMemberBinding="{Binding orderDate}"/>
+                    <GridViewColumn Header="Origin" Width="90" DisplayMemberBinding="{Binding origin}"/>
+                    <GridViewColumn Header="Destination" Width="90" DisplayMemberBinding="{Binding destination}"/>
+                    <GridViewColumn Header="Quantity" Width="70" DisplayMemberBinding="{Binding quantity}"/>
+                    <GridViewColumn Header="Job Type" Width="60" DisplayMemberBinding="{Binding jobType}"/>
                     <GridViewColumn Header="Complete?" Width="100" DisplayMemberBinding="{Binding MARKEDFORACTION}"/>
                   <GridViewColumn Header="Invoice" Width="100">
                   </GridViewColumn>

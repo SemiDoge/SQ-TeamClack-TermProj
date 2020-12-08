@@ -150,6 +150,9 @@
     <Compile Include="Buyer\addCustomerWindow.xaml.cs">
       <DependentUpon>addCustomerWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Buyer\buyerMenu.xaml.cs">
+      <DependentUpon>buyerMenu.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Buyer\buyer_InitiateOrder.xaml.cs">
       <DependentUpon>buyer_InitiateOrder.xaml</DependentUpon>
     </Compile>
@@ -165,9 +168,6 @@
     <Compile Include="user.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buyer\buyerMenu.xaml.cs">
-      <DependentUpon>buyerMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Contract.cs" />
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
@@ -232,11 +232,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Buyer\buyerMenu.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Buyer\addCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Buyer\buyerMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

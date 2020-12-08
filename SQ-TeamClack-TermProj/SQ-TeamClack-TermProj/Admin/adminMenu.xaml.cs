@@ -23,7 +23,7 @@ namespace SQ_TeamClack_TermProj
         User localUser;
 
         /*!
-         * \brief CONSTRUCTOR - This constructor constructs the IP Config page.
+         * \brief CONSTRUCTOR - This constructor constructs the Admin Menu page.
          * \details This constructor initializes all the properties that are needed in order to use the IP Config page.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
@@ -35,8 +35,8 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief This handler changes the to the 
-         * \details 
+         * \brief This handler handles when the user clicks the "Backup" button.
+         * \details This handler brings up the admin backup button page.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
@@ -47,8 +47,8 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief 
-         * \details 
+         * \brief This handler handles when the user clicks the "Carrier" button.
+         * \details This handler brings up the admin backup button page. 
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
