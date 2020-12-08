@@ -147,6 +147,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="buyerMenu.xaml.cs" />
     <Compile Include="Buyer\addCustomerWindow.xaml.cs">
       <DependentUpon>addCustomerWindow.xaml</DependentUpon>
     </Compile>
@@ -165,9 +166,6 @@
     <Compile Include="user.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Buyer\buyerMenu.xaml.cs">
-      <DependentUpon>buyerMenu.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Contract.cs" />
     <Compile Include="LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
