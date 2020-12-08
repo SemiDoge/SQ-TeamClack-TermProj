@@ -39,12 +39,11 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
-
         private void MyWindow_Loaded(object sender, RoutedEventArgs e)
         {
             queryOpenOrders();
             invoiceOrderBTN.IsEnabled = false;
-            ReviewOrdersBTN.IsEnabled = false; 
+            ReviewOrdersBTN.IsEnabled = false;
         }
 
         /*!
@@ -53,7 +52,6 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
-
         private void InitiateOrderBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to initiate order page
@@ -67,7 +65,6 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
-
         private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
         {
             // Go to Review Customers page
@@ -81,7 +78,6 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
-
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
 
@@ -93,7 +89,6 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
-
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
             //log the user out
@@ -109,7 +104,6 @@ namespace SQ_TeamClack_TermProj
          * \details This method queries the Orders table from the Omnicorp database via the localuser connection string.
          * \param <b>void</b>
         */
-
         private void queryOpenOrders()
         {
             string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
@@ -156,12 +150,12 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>SelectionChangedEventArgs</b>
          */
-
         private void orderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             p = (contractParams)orderList.SelectedItem;
             invoiceOrderBTN.IsEnabled = true;
         }
+
 
         /*!
          * \brief This handler handles the logic behind clicking the Invoice Order button.
@@ -169,7 +163,6 @@ namespace SQ_TeamClack_TermProj
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
-
         private void invoiceOrderBTN_Click(object sender, RoutedEventArgs e)
         {
             StringBuilder sb = new StringBuilder();
@@ -186,10 +179,10 @@ namespace SQ_TeamClack_TermProj
             sb.Append("Destination: " + p.destination + "\n");
             sb.Append("Total Travel Time: " + temp.travelTime.ToString() + "\n");
             sb.Append("Total Intermediary Time: " + temp.travelIntTime.ToString() + "\n");
-            sb.Append("Total Travel Distance: " + temp.travelDist.ToString() +"\n");
+            sb.Append("Total Travel Distance: " + temp.travelDist.ToString() + "\n");
             sb.Append("Total Surcharge Cost: " + temp.surchargeCost + "\n");
             sb.Append("Total Rate Cost: " + temp.totalRateCost.ToString() + "\n");
-            sb.Append("Total Final Cost: " + temp.totalFinalCost.ToString() +"\n");
+            sb.Append("Total Final Cost: " + temp.totalFinalCost.ToString() + "\n");
             sb.Append("========================================================================");
 
             if (invoiceFile.ShowDialog() == true)
@@ -208,34 +201,10 @@ namespace SQ_TeamClack_TermProj
          * \param destination - <b>string</b> -
          * \param job_type - <b>int</b> -
         */
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-        private invoiceOutParams calculateTotalTravelTime(string origin, string destination, int quantity,int job_type)
+        private invoiceOutParams calculateTotalTravelTime(string origin, string destination, int quantity, int job_type)
         {
             //string[] cities = { "Windsor", "London", "Hamilton", "Toronto", "Oshawa", "Belleville", "Kingston", "Ottawa" };
             invoiceOutParams ret;
-=======
-
-        private Object[] calculateTotalTravelTime(string origin, string destination, int job_type)
-        {
-            //string[] cities = { "Windsor", "London", "Hamilton", "Toronto", "Oshawa", "Belleville", "Kingston", "Ottawa" };
-
-            switch (job_type)
-            {
-                case 0:
-
-                    break;
-
-                case 1:
-                    break;
-            }
->>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
-=======
-        private invoiceOutParams calculateTotalTravelTime(string origin, string destination, int quantity,int job_type)
-        {
-            //string[] cities = { "Windsor", "London", "Hamilton", "Toronto", "Oshawa", "Belleville", "Kingston", "Ottawa" };
-            invoiceOutParams ret;
->>>>>>> Stashed changes
 
             contractParams order = (contractParams)orderList.SelectedItem;
 
@@ -243,7 +212,7 @@ namespace SQ_TeamClack_TermProj
 
             int originInt = 0;
 
-            
+
 
             switch (origin)
             {
@@ -370,7 +339,6 @@ namespace SQ_TeamClack_TermProj
                             time += 0;
                             break;
                     }
-<<<<<<< HEAD
 
                     switch (job_type)
                     {
@@ -381,12 +349,6 @@ namespace SQ_TeamClack_TermProj
                             intTime = intTime + time + 2.0;
                             break;
                     }
-
-<<<<<<< Updated upstream
-=======
->>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
-=======
->>>>>>> Stashed changes
                 }
             }
             else if (originInt > destinationInt)
@@ -447,23 +409,7 @@ namespace SQ_TeamClack_TermProj
                             intTime = intTime + time + 2.0;
                             break;
                     }
-<<<<<<< Updated upstream
-                }
-            }
 
-            double rateCost = 0;
-
-            //Job_Type = Values are ‘0’ for FTL, ‘1’ for LTL
-            switch (job_type)
-            {
-                case 0:
-                    rateCost = 4.985 * distance;
-                    break;
-                case 1:
-                    rateCost = (0.2995 * distance) * quantity;
-                    break;
-            }
-=======
                 }
             }
 
@@ -492,31 +438,11 @@ namespace SQ_TeamClack_TermProj
 
             double totalCost = surchargeCost + rateCost;
 
-            ret = new invoiceOutParams { travelTime = time, travelIntTime = intTime, travelDist = distance, surchargeCost = surchargeCost, totalRateCost = rateCost, totalFinalCost = totalCost  };
+            ret = new invoiceOutParams { travelTime = time, travelIntTime = intTime, travelDist = distance, surchargeCost = surchargeCost, totalRateCost = rateCost, totalFinalCost = totalCost };
+
 
             return ret;
->>>>>>> Stashed changes
 
-            double surchargeCost = 0.0;
-
-            if (intTime > 24)
-            {
-                for (int i = 0; i < intTime; i += 24)
-                {
-                    surchargeCost += 150;
-                }
-            }
-
-            double totalCost = surchargeCost + rateCost;
-
-            ret = new invoiceOutParams { travelTime = time, travelIntTime = intTime, travelDist = distance, surchargeCost = surchargeCost, totalRateCost = rateCost, totalFinalCost = totalCost  };
-
-<<<<<<< HEAD
-            return ret;
-
-=======
-            return temp;
->>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
         }
     }
 }

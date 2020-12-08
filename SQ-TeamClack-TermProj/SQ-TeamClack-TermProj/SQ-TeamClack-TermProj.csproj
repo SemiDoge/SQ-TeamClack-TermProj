@@ -147,7 +147,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="buyerMenu.xaml.cs" />
     <Compile Include="Buyer\addCustomerWindow.xaml.cs">
       <DependentUpon>addCustomerWindow.xaml</DependentUpon>
     </Compile>

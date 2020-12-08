@@ -33,10 +33,7 @@
         public string west { get; set; }
         public string east { get; set; }
     }
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
->>>>>>> Stashed changes
+
 
     public struct invoiceOutParams
     {
@@ -47,10 +44,4 @@
         public double totalRateCost { get; set; }
         public double totalFinalCost { get; set; }
     }
-<<<<<<< Updated upstream
 }
-=======
-=======
->>>>>>> Stashed changes
-}
->>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e

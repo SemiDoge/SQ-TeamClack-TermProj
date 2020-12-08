@@ -45,7 +45,6 @@
                   ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" FontFamily="Arial" SelectionChanged="orderList_SelectionChanged">
             <ListView.View>
                 <GridView>
-<<<<<<< HEAD
                     <GridViewColumn Header="Order Number" Width="150" DisplayMemberBinding="{Binding orderID}"/>
                     <GridViewColumn Header="Client Name" Width="150" DisplayMemberBinding="{Binding clientName}"/>
                     <GridViewColumn Header="Order Date" Width="150" DisplayMemberBinding="{Binding orderDate}"/>
@@ -54,14 +53,12 @@
                     <GridViewColumn Header="Quantity" Width="70" DisplayMemberBinding="{Binding quantity}"/>
                     <GridViewColumn Header="Job Type" Width="60" DisplayMemberBinding="{Binding jobType}"/>
                     <GridViewColumn Header="Complete?" Width="100" DisplayMemberBinding="{Binding MARKEDFORACTION}"/>
-=======
                     <GridViewColumn Header="Order Number" Width="150" DisplayMemberBinding="{Binding orderID}" />
                     <GridViewColumn Header="Order Date" Width="250" DisplayMemberBinding="{Binding clientName}" />
                     <GridViewColumn Header="Origin" Width="150" DisplayMemberBinding="{Binding origin}" />
                     <GridViewColumn Header="Destination" Width="150" DisplayMemberBinding="{Binding destination}" />
                     <GridViewColumn Header="Complete?" Width="100" DisplayMemberBinding="{Binding MARKEDFORACTION}" />
->>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
-                  <GridViewColumn Header="Invoice" Width="100">
+                    <GridViewColumn Header="Invoice" Width="100">
                   </GridViewColumn>
                 </GridView>
             </ListView.View>
