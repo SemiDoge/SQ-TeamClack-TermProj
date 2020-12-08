@@ -24,6 +24,11 @@ namespace SQ_TeamClack_TermProj
     {
         private User localUser;
 
+        /*!
+         * \brief CONSTRUCTOR -  This constructor constructs the login page.
+         * \details This constructor constructs the login page and sets the page's localUser to the localUser passed in as a parameter.
+         * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
+        */
         public loginPage(User localUser)
         {
             InitializeComponent();
@@ -31,7 +36,12 @@ namespace SQ_TeamClack_TermProj
             this.localUser = localUser;
         }
 
-
+        /*!
+         * \brief This handler handles the button that submits the user credentials.
+         * \details This handler takes the user entered credentials and submits it for verification.
+         * \param sender <b>object</b>
+         * \param e <b>RoutedEventArgs</b>
+        */
         private void SubmitBTN_Click(object sender, RoutedEventArgs e)
         {
             bool usernameValid = false;
@@ -71,11 +81,12 @@ namespace SQ_TeamClack_TermProj
                 switch (localUser.CONSTR)
                 {
                     case "AdminAcc":
-                        // Go to buyer page
-
+                        // Go to admin page
+                        adminMenu adminM = new adminMenu(localUser);
+                        this.NavigationService.Navigate(adminM);
                         break;
                     case "PlannerAcc":
-                        // Go to buyer page
+                        // Go to planner page
 
                         break;
                     case "BuyerAcc":

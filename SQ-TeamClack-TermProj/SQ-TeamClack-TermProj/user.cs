@@ -12,6 +12,8 @@ namespace SQ_TeamClack_TermProj
         private string userName;
         private string password;
         private string conStr;
+        public static string localUsername;
+        public static bool orderInProgress;
 
         public User(string userName, string password)
         {
@@ -26,7 +28,7 @@ namespace SQ_TeamClack_TermProj
 
         /*!
          * \brief This function logs the user out.
-         * \details 
+         * \details This functions clears all of the information associated with the logged
          * \return <b>void</b>
         */
         public void logout()
@@ -34,6 +36,16 @@ namespace SQ_TeamClack_TermProj
             this.userName = "";
             this.password = "";
             this.conStr = "loginAcc";
+            // this.orderInProgress = false;
+        }
+
+        public void setOrderProgress(bool input)
+        {
+            orderInProgress = input;
+        }
+        public bool getOrderProgress()
+        {
+            return orderInProgress;
         }
     }
 }

@@ -59,6 +59,9 @@
     <Reference Include="MySql.Data, Version=8.0.22.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.8.0.22\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="MySqlBackup, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlBackup.NET.2.3.3.1\lib\net452\MySqlBackup.dll</HintPath>
+    </Reference>
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
@@ -119,9 +122,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Admin\adminMenu.xaml.cs">
+      <DependentUpon>adminMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\admin_AddCarrier.xaml.cs">
+      <DependentUpon>admin_AddCarrier.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\admin_Backup.xaml.cs">
+      <DependentUpon>admin_Backup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\admin_CarrierConfig.xaml.cs">
+      <DependentUpon>admin_CarrierConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\admin_IPConfig.xaml.cs">
+      <DependentUpon>admin_IPConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\admin_LogFile.xaml.cs">
+      <DependentUpon>admin_LogFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\admin_TableConfig.xaml.cs">
+      <DependentUpon>admin_TableConfig.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Buyer\addCustomerWindow.xaml.cs">
+      <DependentUpon>addCustomerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Buyer\buyer_InitiateOrder.xaml.cs">
       <DependentUpon>buyer_InitiateOrder.xaml</DependentUpon>
@@ -138,7 +165,7 @@
     <Compile Include="user.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="buyerMenu.xaml.cs">
+    <Compile Include="Buyer\buyerMenu.xaml.cs">
       <DependentUpon>buyerMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="Contract.cs" />
@@ -177,9 +204,41 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="buyerMenu.xaml">
+    <Page Include="Admin\adminMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\admin_AddCarrier.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\admin_Backup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\admin_CarrierConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\admin_IPConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\admin_LogFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Admin\admin_TableConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Buyer\buyerMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Buyer\addCustomerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Buyer\buyer_InitiateOrder.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -206,5 +265,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

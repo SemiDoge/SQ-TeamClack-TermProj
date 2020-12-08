@@ -42,7 +42,7 @@
                HorizontalContentAlignment="Left" Foreground="Red" FontSize="15"/>
 
         <ListView x:Name="orderList" Grid.Column="1" Grid.Row="3" Height="350" VerticalAlignment="Top"
-                  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" FontFamily="Arial">
+                  ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" FontFamily="Arial" SelectionChanged="orderList_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Order Number" Width="150" DisplayMemberBinding="{Binding orderID}"/>
@@ -50,11 +50,14 @@
                     <GridViewColumn Header="Origin" Width="150" DisplayMemberBinding="{Binding origin}"/>
                     <GridViewColumn Header="Destination" Width="150" DisplayMemberBinding="{Binding destination}"/>
                     <GridViewColumn Header="Complete?" Width="100" DisplayMemberBinding="{Binding MARKEDFORACTION}"/>
+                  <GridViewColumn Header="Invoice" Width="100">
+                  </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
 
-
+      <Button x:Name="invoiceOrderBTN" Grid.Column="1" Grid.Row="3" Content="Invoice" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
+              Width="80" Height="40" Click="invoiceOrderBTN_Click"/>
         <Button x:Name="InitiateOrderBTN" Grid.Column="0"
                 Content="Create a Order" VerticalAlignment="Top" HorizontalAlignment="Center"
                 Width="200" Height="85" Foreground="#616161" FontSize="20" FontFamily="Arial" Click="InitiateOrderBTN_Click" Grid.ColumnSpan="2" Margin="-3,78,803,0" Grid.RowSpan="2"/>
