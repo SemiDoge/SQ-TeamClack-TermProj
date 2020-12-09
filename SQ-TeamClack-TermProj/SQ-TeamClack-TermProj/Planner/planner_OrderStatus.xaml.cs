@@ -22,7 +22,7 @@ namespace SQ_TeamClack_TermProj
         {
             InitializeComponent();
             this.localUser = localUser;
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner loaded order status.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner loaded order status.\n");
         }
 
         private void incrementTimeBTN_Click(object sender, RoutedEventArgs e)
@@ -57,7 +57,7 @@ namespace SQ_TeamClack_TermProj
                     connection.Close();
                 }
             }
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner incremented time for an order.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner incremented time for an order.\n");
             planner_OrderStatus newPage = new planner_OrderStatus(localUser);
             this.NavigationService.Navigate(newPage);
         }
@@ -105,7 +105,7 @@ namespace SQ_TeamClack_TermProj
         private void allTimeReportBTN_Click(object sender, RoutedEventArgs e)
         {
             createSummaryReport();
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner created summary report.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner created summary report.\n");
         }
 
         private void createSummaryReport()

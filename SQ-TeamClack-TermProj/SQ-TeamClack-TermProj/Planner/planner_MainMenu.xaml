@@ -71,7 +71,7 @@
                     <StackPanel>
                         <Grid Height="55" Background="#FF4D4D4D">
                             <Button x:Name="ButtonOpenMenu" HorizontalAlignment="Right" Background="{x:Null}" BorderBrush="{x:Null}" Click="ButtonOpenMenu_Click" Margin="0,9,0,10">
-                                <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Menu" Width="25" Height="25" Foreground="White"/>
+                                <materialDesign:PackIcon HorizontalAlignment="Center" Kind="Menu" Width="25" Height="25" Foreground="White" Margin="0,2,8,10"/>
                             </Button>
                             <Button x:Name="ButtonCloseMenu" HorizontalAlignment="Right" Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Collapsed" Click="ButtonCloseMenu_Click" Margin="0,9,0,10">
                                 <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
@@ -120,8 +120,9 @@
                FontSize="50" Foreground="#e4e4e4" FontFamily="Arial" 
                HorizontalAlignment="Center" VerticalAlignment="Center" Height="64" Margin="32,4" Width="136"/>
             <Label x:Name="UsernameLabel" Grid.Row="0" 
-               Content=" " HorizontalContentAlignment="Right" FontFamily="Arial" 
-               FontSize="30" VerticalAlignment="Center" Foreground="White" Height="42" Margin="0,15" Grid.Column="1"/>
+               Content="" HorizontalContentAlignment="Right" FontFamily="Arial" 
+               FontSize="30" VerticalAlignment="Center" Foreground="White" Height="42" Margin="534,16,10,15" Grid.Column="1"/>
+            <Label x:Name="roleLabel" Content="Planner Main Menu" FontFamily="Arial" Foreground="White" Margin="227,16,297,9" FontSize="30" Grid.Column="1"/>
             <ContentControl x:Name="pageNavigation"
                         Grid.Row="1" Grid.Column="1" Foreground="{x:Null}" Margin="23,0,0,0">
 

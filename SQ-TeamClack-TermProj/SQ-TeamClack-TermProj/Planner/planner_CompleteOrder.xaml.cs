@@ -38,7 +38,7 @@ namespace SQ_TeamClack_TermProj
         {
             InitializeComponent();
             this.localUser = localUser;
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner loaded completed order.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner loaded completed order.\n");
         }
 
         /*!
@@ -378,7 +378,7 @@ namespace SQ_TeamClack_TermProj
                 }
             }
 
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner completed an order.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner completed an order.\n");
             planner_CompleteOrder newPage =  new planner_CompleteOrder(localUser);
             this.NavigationService.Navigate(newPage);
         }

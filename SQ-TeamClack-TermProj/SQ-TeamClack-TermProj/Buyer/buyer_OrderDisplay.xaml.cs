@@ -26,7 +26,7 @@ namespace SQ_TeamClack_TermProj
         public buyer_OrderDisplay(User localUser, contractParams param)
         {
             InitializeComponent();
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer loaded order display in.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer loaded order display in.\n");
 
             this.localUser = localUser;
 

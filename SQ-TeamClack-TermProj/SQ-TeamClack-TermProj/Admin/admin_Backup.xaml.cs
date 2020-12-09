@@ -28,7 +28,7 @@ namespace SQ_TeamClack_TermProj
             this.localUser = localUser;
 
             LogFileBlock.Text = MainWindow.logfileLocation;
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin loaded backup page.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin loaded backup page.\n");
         }
 
         /*!
@@ -84,7 +84,7 @@ namespace SQ_TeamClack_TermProj
                 LogFileBlock.Text = "Error: No Log File Created.";
             }
 
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin opened log file.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin opened log file.\n");
         }
 
         /*!
@@ -105,7 +105,7 @@ namespace SQ_TeamClack_TermProj
                 dumpDB(logFile.FileName);
             }
 
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin backed up database.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin backed up database.\n");
         }
 
         /*!

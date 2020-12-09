@@ -26,7 +26,7 @@ namespace SQ_TeamClack_TermProj
 
         public buyer_ReviewOrders(User localUser)
         {
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer loaded review order page.\n");
+            File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer loaded review order page.\n");
             InitializeComponent();
 
             this.localUser = localUser;
