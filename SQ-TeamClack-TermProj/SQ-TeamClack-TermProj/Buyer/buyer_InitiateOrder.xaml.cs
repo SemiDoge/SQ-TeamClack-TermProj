@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.IO;
 using System.Configuration;
 using System.Text;
 using System.Windows;
@@ -27,6 +28,8 @@ namespace SQ_TeamClack_TermProj
 
         public buyer_InitiateOrder(User localUser)
         {
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer loaded initiate order.\n");
+
             InitializeComponent();
 
             this.localUser = localUser;
@@ -54,6 +57,7 @@ namespace SQ_TeamClack_TermProj
                 try
                 {
                     connection.Open();
+                    File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer connected to the contract marketplace database.\n");
                     databaseConnected = true; // bool that handles
                     localUser.setOrderProgress(true);
                     reader = cmd.ExecuteReader();
@@ -191,6 +195,8 @@ namespace SQ_TeamClack_TermProj
             }
             else
             {
+                File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer logged out.\n");
+                localUser.logout();
                 loginPage login = new loginPage(localUser);
                 this.NavigationService.Navigate(login);
             }

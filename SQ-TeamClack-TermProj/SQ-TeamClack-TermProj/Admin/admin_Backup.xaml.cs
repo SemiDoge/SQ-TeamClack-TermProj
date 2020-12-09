@@ -2,6 +2,7 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Configuration;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,9 +16,9 @@ namespace SQ_TeamClack_TermProj
         private User localUser;
 
         /*!
-         * \brief CONSTRUCTOR -
-         * \details
-         * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
+         * \brief CONSTRUCTOR - This constructor constructs the admin backup page.
+         * \details This constructor constructs the Table Config page and sets the page's localUser to the localUser passed in as a parameter.
+         * \param <b>void</b>
         */
 
         public admin_Backup(User localUser)
@@ -26,13 +27,15 @@ namespace SQ_TeamClack_TermProj
 
             this.localUser = localUser;
 
-            LogFileBlock.Text = SQ_TeamClack_TermProj.MainWindow.logfileLocation;
+            LogFileBlock.Text = MainWindow.logfileLocation;
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin loaded backup page.\n");
         }
 
         /*!
-         * \brief
-         * \details
-         * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
+         * \brief This handler handles when the user clicks the "..." button.
+         * \details This handler allows for the user to navigate to the login page and logout.
+         * \param sender <b>object</b>
+         * \param e <b>RoutedEventArgs</b>
         */
 
         private void LogButton_Click(object sender, RoutedEventArgs e)
@@ -48,42 +51,47 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief
-         * \details
-         * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
+         * \brief This handler handles when the user clicks the "Configure" button.
+         * \details This handler opens a window that asks if the admin wants to change the ip of the database.
+         * \param sender <b>object</b>
+         * \param e <b>RoutedEventArgs</b>
         */
 
         private void ConfigButton_Click(object sender, RoutedEventArgs e)
         {
-            admin_IPConfig ipconfig = new admin_IPConfig(localUser);
+            admin_IPConfig ipconfig = new admin_IPConfig();
             ipconfig.ShowDialog();
             DBMS_IP.Text = "IP: " + ipconfig.ResponseTextIP;
             DBMS_PORT.Text = "PORT: " + ipconfig.ResponseTextPort;
         }
 
         /*!
-         * \brief
-         * \details
-         * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
+         * \brief This handler handles when the user clicks the "Open Log" button.
+         * \details This handler opens up the log file.
+         * \param sender <b>object</b>
+         * \param e <b>RoutedEventArgs</b>
         */
 
         private void OpenLogButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                admin_LogFile log = new admin_LogFile(localUser);
+                admin_LogFile log = new admin_LogFile();
                 log.ShowDialog();
             }
             catch (Exception)
             {
                 LogFileBlock.Text = "Error: No Log File Created.";
             }
+
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin opened log file.\n");
         }
 
         /*!
-         * \brief
-         * \details
-         * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
+         * \brief This handler handles when the user clicks the "Initiate Backup" button.
+         * \details This handler opens up a save dialog and asks the user where they would like to save their backup of the database.
+         * \param sender <b>object</b>
+         * \param e <b>RoutedEventArgs</b>
         */
 
         private void BackupBtn_Click(object sender, RoutedEventArgs e)
@@ -96,12 +104,14 @@ namespace SQ_TeamClack_TermProj
             {
                 dumpDB(logFile.FileName);
             }
+
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin backed up database.\n");
         }
 
         /*!
-         * \brief
-         * \details
-         * \param param - <b>orderParams</b> - A object that contains all of the parameters of the order.
+         * \brief This method dumps the database to a file.
+         * \details This method uses MySQLBackup to dump the database to an .sql file of the users choice.
+         * \param filePath - <b>string</b> - A string that contains the file path that the user would like to save the database dump to.
         */
 
         private void dumpDB(string filePath)

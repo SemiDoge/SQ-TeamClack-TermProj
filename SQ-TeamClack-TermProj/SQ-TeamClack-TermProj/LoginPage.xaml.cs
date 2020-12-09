@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Configuration;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -74,16 +75,20 @@ namespace SQ_TeamClack_TermProj
                 {
                     case "AdminAcc":
                         // Go to admin page
+                        File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin logged in.\n");
                         adminMenu adminM = new adminMenu(localUser);
                         this.NavigationService.Navigate(adminM);
                         break;
 
                     case "PlannerAcc":
                         // Go to planner page
-
+                        File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner logged in.\n");
+                        plannerMenu plannerM = new plannerMenu(localUser);
+                        this.NavigationService.Navigate(plannerM);
                         break;
 
                     case "BuyerAcc":
+                        File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer logged in.\n");
                         // Go to buyer page
                         buyerMenu buyerM = new buyerMenu(localUser);
                         this.NavigationService.Navigate(buyerM);

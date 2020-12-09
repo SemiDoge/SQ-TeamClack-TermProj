@@ -165,6 +165,18 @@
     <Compile Include="Buyer\buyer_ReviewOrders.xaml.cs">
       <DependentUpon>buyer_ReviewOrders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Planner\plannerMenu.xaml.cs">
+      <DependentUpon>plannerMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planner\planner_CompleteOrder.xaml.cs">
+      <DependentUpon>planner_CompleteOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planner\planner_ExtraCarriers.xaml.cs">
+      <DependentUpon>planner_ExtraCarriers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Planner\planner_OrderStatus.xaml.cs">
+      <DependentUpon>planner_OrderStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="user.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +275,22 @@
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Planner\plannerMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planner\planner_CompleteOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planner\planner_ExtraCarriers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Planner\planner_OrderStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup />

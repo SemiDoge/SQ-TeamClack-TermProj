@@ -1,114 +1,74 @@
-﻿using Microsoft.Win32;
-using MySql.Data.MySqlClient;
-using System;
-using System.Configuration;
-using System.IO;
+﻿using System;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
+using MySql.Data.MySqlClient;
+using System.Configuration;
 
 namespace SQ_TeamClack_TermProj
 {
     /// <summary>
-    /// Interaction logic for buyer_ReviewOrders.xaml
+    /// Interaction logic for planner_OrderStatus.xaml
     /// </summary>
-    public partial class buyer_ReviewOrders : Page
+    public partial class planner_OrderStatus : Page
     {
         private User localUser;
-        private contractParams p;
+        contractParams newContract;
 
-        /*!
-         * \brief CONSTRUCTOR - This constructor constructs the Review Order page.
-         * \details This constructor constructs the review orders page and sets the page's localUser to the localUser passed in as a parameter.
-         * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
-        */
-
-        public buyer_ReviewOrders(User localUser)
+        public planner_OrderStatus(User localUser)
         {
-            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer loaded review order page.\n");
             InitializeComponent();
-
             this.localUser = localUser;
-            UsernameLabel.Content = localUser.USERNAME;
-            Loaded += MyWindow_Loaded;
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner loaded order status.\n");
         }
 
-        /*!
-         * \brief This handler handles to on load functionality.
-         * \details This handler is calls the queryOpenOrders method on page load.
-         * \param sender <b>object</b>
-         * \param e <b>RoutedEventArgs</b>
-        */
-        private void MyWindow_Loaded(object sender, RoutedEventArgs e)
+        private void incrementTimeBTN_Click(object sender, RoutedEventArgs e)
         {
-            queryOpenOrders();
-            invoiceOrderBTN.IsEnabled = false;
-            ReviewOrdersBTN.IsEnabled = false;
-        }
+            contractParams temp = (contractParams)orderList.SelectedItem;
 
-        /*!
-         * \brief This handler handles when the user clicks the "Initiate Order" button.
-         * \details This handler is superfluous as it would take the user back to the page they are currently on.
-         * \param sender <b>object</b>
-         * \param e <b>RoutedEventArgs</b>
-        */
-        private void InitiateOrderBTN_Click(object sender, RoutedEventArgs e)
-        {
-            // Go to initiate order page
-            buyer_InitiateOrder initiateOrder = new buyer_InitiateOrder(localUser);
-            this.NavigationService.Navigate(initiateOrder);
-        }
+            temp.duration -= 24;
 
-        /*!
-         * \brief This handler handles when the user clicks the "Review Customers" button.
-         * \details This handler changes the page to the review customers page. This handler needs to also make sure that the user means to leave the order creation process, in progress.
-         * \param sender <b>object</b>
-         * \param e <b>RoutedEventArgs</b>
-        */
-        private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
-        {
-            // Go to Review Customers page
-            buyer_ReviewCustomers reviewCustomers = new buyer_ReviewCustomers(localUser);
-            this.NavigationService.Navigate(reviewCustomers);
-        }
+            if (temp.duration < 0)
+            {
+                temp.duration = 0;
+                temp.markedForAction = true;
+            }
 
-        /*!
-         * \brief DISABLED - This handler handles when the user clicks the "Review Orders" button.
-         * \details This handler calls the queryOpenOrders method.
-         * \param sender <b>object</b>
-         * \param e <b>RoutedEventArgs</b>
-        */
-        private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        /*!
-         * \brief This handler is an event handler for the logout button.
-         * \details This handler is to allow the user to navigate back to the login page and log out. This handler needs to also make sure that the user means to leave the order creation process, in progress.
-         * \param sender <b>object</b>
-         * \param e <b>RoutedEventArgs</b>
-        */
-        private void logoutButton_Click(object sender, RoutedEventArgs e)
-        {
-            //log the user out
-            localUser.logout();
-
-            // Return to login page
-            loginPage login = new loginPage(localUser);
-            this.NavigationService.Navigate(login);
-        }
-
-        /*!
-         * \brief This method fills a List View with all of the active orders.
-         * \details This method queries the Orders table from the Omnicorp database via the localuser connection string.
-         * \param <b>void</b>
-        */
-        private void queryOpenOrders()
-        {
             string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
-            StringBuilder cmdSB = new StringBuilder("SELECT OrderID, CustomerName, Origin, Destination, MarkedForAction, Quantity, JobType, OrderDate FROM Orders;");
+            StringBuilder cmdSB = new StringBuilder("UPDATE Orders SET ETA=" + temp.duration.ToString() + ", MarkedForAction=" + temp.markedForAction.ToString() + " WHERE OrderID=" + temp.orderID.ToString() + ";");
+
+            using (MySqlConnection connection = new MySqlConnection(conStr))
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdSB.ToString(), connection);
+                try
+                {
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner incremented time for an order.\n");
+            planner_OrderStatus newPage = new planner_OrderStatus(localUser);
+            this.NavigationService.Navigate(newPage);
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Then add all the entries from the database into the list
+            // Then set the orderList.ItemsSource equal to the list
+            // EX: orderList.ItemsSource = orderL;
+            string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
+            StringBuilder cmdSB = new StringBuilder("SELECT OrderID, ETA, MarkedForAction FROM Orders;");
             MySqlDataReader reader = null;
 
             using (MySqlConnection connection = new MySqlConnection(conStr))
@@ -124,12 +84,7 @@ namespace SQ_TeamClack_TermProj
                         orderList.Items.Add(new contractParams
                         {
                             orderID = ulong.Parse(reader["OrderID"].ToString()),
-                            clientName = reader["CustomerName"].ToString(),
-                            orderDate = reader["OrderDate"].ToString(),
-                            origin = reader["Origin"].ToString(),
-                            destination = reader["Destination"].ToString(),
-                            quantity = int.Parse(reader["Quantity"].ToString()),
-                            jobType = int.Parse(reader["JobType"].ToString()),
+                            duration = int.Parse(reader["ETA"].ToString()),
                             markedForAction = bool.Parse(reader["MarkedForAction"].ToString())
                         });
                     }
@@ -142,59 +97,96 @@ namespace SQ_TeamClack_TermProj
                 {
                     connection.Close();
                 }
+
+
             }
         }
 
-        /*!
-         * \brief This handler handles the logic behind a selection in the List View.
-         * \details This handler handles what happens when the user selects an contract entry in the List View.
-         * \param sender <b>object</b>
-         * \param e <b>SelectionChangedEventArgs</b>
-         */
-        private void orderList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void allTimeReportBTN_Click(object sender, RoutedEventArgs e)
         {
-            p = (contractParams)orderList.SelectedItem;
-            invoiceOrderBTN.IsEnabled = true;
+            createSummaryReport();
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner created summary report.\n");
         }
 
-
-        /*!
-         * \brief This handler handles the logic behind clicking the Invoice Order button.
-         * \details This handler handles the creation of the invoice txt file.
-         * \param sender <b>object</b>
-         * \param e <b>RoutedEventArgs</b>
-        */
-        private void invoiceOrderBTN_Click(object sender, RoutedEventArgs e)
+        private void createSummaryReport()
         {
             StringBuilder sb = new StringBuilder();
+            MySqlDataReader reader = null;
+            bool shownDialog = false;
 
             //Open up a save file dialog so that the user can choose where they want the invoice saved
             SaveFileDialog invoiceFile = new SaveFileDialog();
             invoiceFile.Filter = "Text file(*.txt)|*.txt|All Files (*.*)|*.*";
             invoiceFile.Title = "Save an Invoice (.txt)";
 
-            var temp = simulateTravelRoute(p.origin, p.destination, p.quantity, p.jobType);
-
-            //Building the invoice
-            sb.Append("========================================================================\n");
-            sb.Append("Order Number: " + p.orderID + "\n");
-            sb.Append("Customer: " + p.clientName + "\n");
-            sb.Append("Origin: " + p.origin + "\n");
-            sb.Append("Destination: " + p.destination + "\n");
-            sb.Append("Total Travel Time: " + temp.travelTime.ToString() + "\n");
-            sb.Append("Total Intermediary Time: " + temp.travelIntTime.ToString() + "\n");
-            sb.Append("Total Travel Distance: " + temp.travelDist.ToString() + "\n");
-            sb.Append("Total Surcharge Cost: " + temp.surchargeCost + "\n");
-            sb.Append("Total Rate Cost: " + temp.totalRateCost.ToString() + "\n");
-            sb.Append("Total Final Cost: " + temp.totalFinalCost.ToString() + "\n");
-            sb.Append("========================================================================");
-
-            //writing the invoice to the file
             if (invoiceFile.ShowDialog() == true)
             {
-                using (StreamWriter sw = new StreamWriter(invoiceFile.FileName))
+                shownDialog = true;
+            }
+
+            string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
+            StringBuilder cmdSB = new StringBuilder("SELECT OrderID, CustomerName, Origin, Destination, MarkedForAction, Quantity, JobType, OrderDate, CarrierName, Van_Type FROM Orders;");
+
+            sb.Append("Displaying summary for " + getNumberOfOrders() + " orders.\n");
+
+            using (MySqlConnection connection = new MySqlConnection(conStr))
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdSB.ToString(), connection);
+                try
                 {
-                    sw.WriteLine(sb.ToString());
+                    connection.Open();
+                    reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        newContract = new contractParams {
+                            orderID = ulong.Parse(reader["OrderID"].ToString()),
+                            orderDate = reader["OrderDate"].ToString(),
+                            clientName = reader["CustomerName"].ToString(),
+                            jobType = int.Parse(reader["JobType"].ToString()),
+                            quantity = int.Parse(reader["Quantity"].ToString()),
+                            origin = reader["Origin"].ToString(),
+                            destination = reader["Destination"].ToString(),
+                            vanType = int.Parse(reader["Van_Type"].ToString()),
+                            carrierName = reader["CarrierName"].ToString()
+                            
+                        };
+
+                        var temp = simulateTravelRoute(newContract.origin, newContract.destination, newContract.quantity, newContract.jobType);
+
+
+                        //Building the invoice
+                        sb.Append("========================================================================\n");
+                        sb.Append("Order Number: " + newContract.orderID + "\n");
+                        sb.Append("Customer: " + newContract.clientName + "\n");
+                        sb.Append("Origin: " + newContract.origin + "\n");
+                        sb.Append("Destination: " + newContract.destination + "\n");
+                        sb.Append("Total Travel Time: " + temp.travelTime.ToString() + "\n");
+                        sb.Append("Total Intermediary Time: " + temp.travelIntTime.ToString() + "\n");
+                        sb.Append("Total Travel Distance: " + temp.travelDist.ToString() + "\n");
+                        sb.Append("Total Surcharge Cost: " + temp.surchargeCost + "\n");
+                        sb.Append("Total Rate Cost: " + temp.totalRateCost.ToString() + "\n");
+                        sb.Append("Total Final Cost: " + temp.totalFinalCost.ToString() + "\n");
+                        sb.Append("========================================================================\n");
+
+                        //writing the invoice to the file
+                        if (shownDialog == true)
+                        {
+                            using (StreamWriter sw = new StreamWriter(invoiceFile.FileName, true))
+                            {
+                                sw.WriteLine(sb.ToString());
+                                sb.Clear();
+                            }
+                        }
+
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
                 }
             }
         }
@@ -210,7 +202,6 @@ namespace SQ_TeamClack_TermProj
         private invoiceOutParams simulateTravelRoute(string origin, string destination, int quantity, int job_type)
         {
             invoiceOutParams ret;
-            contractParams order = (contractParams)orderList.SelectedItem;
 
             int originInt = 0;
             int destinationInt = 0;
@@ -443,6 +434,34 @@ namespace SQ_TeamClack_TermProj
 
             //returning the struct with all of the calculated data
             return new invoiceOutParams { travelTime = time, travelIntTime = intTime, travelDist = distance, surchargeCost = surchargeCost, totalRateCost = rateCost, totalFinalCost = totalCost };
+        }
+
+
+        private int getNumberOfOrders()
+        {
+            string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
+            StringBuilder cmdSB = new StringBuilder("SELECT COUNT(*) FROM Orders;");
+            int orderCount = 0;
+
+            using (MySqlConnection connection = new MySqlConnection(conStr))
+            {
+                MySqlCommand cmd = new MySqlCommand(cmdSB.ToString(), connection);
+                try
+                {
+                    connection.Open();
+                    orderCount = int.Parse(cmd.ExecuteScalar().ToString());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+
+            return orderCount;
         }
     }
 }

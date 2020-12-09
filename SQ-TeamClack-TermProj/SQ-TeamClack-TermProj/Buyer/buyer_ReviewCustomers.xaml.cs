@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.IO;
 
 namespace SQ_TeamClack_TermProj
 {
@@ -23,6 +24,7 @@ namespace SQ_TeamClack_TermProj
         public buyer_ReviewCustomers(User localUser)
         {
             InitializeComponent();
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer loaded review customers.\n");
 
             this.localUser = localUser;
             UsernameLabel.Content = localUser.USERNAME;

@@ -8,24 +8,21 @@ namespace SQ_TeamClack_TermProj
     public partial class admin_IPConfig : Window
     {
         public bool Confirmed;
-        private User localUser;
 
         /*!
-         * \brief CONSTRUCTOR - This constructor constructs the IP Config page.
-         * \details This constructor initializes all the properties that are needed in order to use the IP Config page.
+         * \brief CONSTRUCTOR - This constructor constructs the IP Config window.
+         * \details This constructor initializes all the properties that are needed in order to use the IP Config window.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
 
-        public admin_IPConfig(User localUser)
+        public admin_IPConfig()
         {
             InitializeComponent();
-
-            this.localUser = localUser;
         }
 
         /*!
-         * \brief
-         * \details
+         * \brief This handler handles when the user clicks the "Confirm" button.
+         * \details This handler brings up the ip config window.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */

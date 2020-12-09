@@ -11,6 +11,27 @@
 using System;
 using System.Windows;
 
+
+/*! \mainpage T.M.S: The Definitive Edition
+ *
+ * \section intro_sec Introduction To the T.M.System
+ * In the TMSystem there are three types of accounts: the Admin, Buyer, and Planner.
+ *
+ * \subsection Admin The Admin Account
+ * This is the introduction.
+ *
+ * \subsection Buyer The Buyer Account
+ * This is the introduction.
+ *
+ * \subsection Planner The Planner Account
+ * This is the introduction.
+ *
+ *
+ * 
+ *
+ * \authors Tommy Ngo, Isaiah Andrews, Taimoor Salam, Jaydan Zabar
+ */
+
 namespace SQ_TeamClack_TermProj
 {
     /// <summary>

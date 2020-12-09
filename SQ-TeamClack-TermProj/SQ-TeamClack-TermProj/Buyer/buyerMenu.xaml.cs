@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -43,6 +44,8 @@ namespace SQ_TeamClack_TermProj
         */
         private void InitiateOrderBTN_Click(object sender, RoutedEventArgs e)
         {
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer opened initiate order page.\n");
+
             // Go to initiate order page
             buyer_InitiateOrder initiateOrder = new buyer_InitiateOrder(localUser);
             this.NavigationService.Navigate(initiateOrder);
@@ -56,6 +59,8 @@ namespace SQ_TeamClack_TermProj
         */
         private void ReviewCustomersBTN_Click(object sender, RoutedEventArgs e)
         {
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer opened review customers page in.\n");
+
             // Go to Review Customers page
             buyer_ReviewCustomers reviewCustomers = new buyer_ReviewCustomers(localUser);
             this.NavigationService.Navigate(reviewCustomers);
@@ -69,6 +74,8 @@ namespace SQ_TeamClack_TermProj
         */
         private void ReviewOrdersBTN_Click(object sender, RoutedEventArgs e)
         {
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer opened review order page.\n");
+
             // Go to Review Orders page
             buyer_ReviewOrders reviewOrders = new buyer_ReviewOrders(localUser);
             this.NavigationService.Navigate(reviewOrders);
@@ -83,6 +90,7 @@ namespace SQ_TeamClack_TermProj
         private void logoutButton_Click(object sender, RoutedEventArgs e)
         {
             localUser.logout();
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer logged out.\n");
 
             // Return to login page
             loginPage login = new loginPage(localUser);

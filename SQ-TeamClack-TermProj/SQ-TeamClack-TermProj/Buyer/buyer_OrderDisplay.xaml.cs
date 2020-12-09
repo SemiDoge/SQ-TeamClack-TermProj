@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.IO;
 using System.Configuration;
 using System.Text;
 using System.Windows;
@@ -25,6 +26,7 @@ namespace SQ_TeamClack_TermProj
         public buyer_OrderDisplay(User localUser, contractParams param)
         {
             InitializeComponent();
+            File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer loaded order display in.\n");
 
             this.localUser = localUser;
 
@@ -78,6 +80,12 @@ namespace SQ_TeamClack_TermProj
             }
         }
 
+        /*!
+         * \brief DISABLED - This handler handles when the user clicks the "Review Customer" button.
+         * \details This handler is superfluous as it would take the user back to the page they are currently on.
+         * \param sender <b>object</b>
+         * \param e <b>RoutedEventArgs</b>
+        */
         private void InitiateOrderBTN_Click(object sender, RoutedEventArgs e)
         {
             //tommy

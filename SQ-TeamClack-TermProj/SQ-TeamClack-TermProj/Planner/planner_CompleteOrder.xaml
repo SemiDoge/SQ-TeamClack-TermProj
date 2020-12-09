@@ -1,0 +1,32 @@
+﻿<Page x:Class="SQ_TeamClack_TermProj.planner_CompleteOrder"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SQ_TeamClack_TermProj"
+      mc:Ignorable="d" 
+      d:DesignHeight="622" d:DesignWidth="872"
+      Title="completeOrderPage" Loaded="Page_Loaded">
+    <Grid Background="{x:Null}">
+        <ListView x:Name="orderList" HorizontalAlignment="Left" Height="311" Margin="64,79,0,0" VerticalAlignment="Top" Width="748" SelectionChanged="orderList_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Order Number" Width="180" DisplayMemberBinding="{Binding orderID}"/>
+                    <GridViewColumn Header="City" Width="150" DisplayMemberBinding="{Binding origin}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label Content="Select an Order" FontSize="30" HorizontalAlignment="Center" Margin="332,26,324,0" VerticalAlignment="Top" Width="216"/>
+        <Label Content="[Order Selected]" FontSize="20" HorizontalAlignment="Left" Margin="357,410,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="submitButton" Content="Submit" HorizontalAlignment="Left" Margin="394,535,0,0" VerticalAlignment="Top" Width="84" Click="submitButton_Click" BorderBrush="{x:Null}" IsEnabled="False">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFAC00AC" Offset="0"/>
+                    <GradientStop Color="Magenta" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <ComboBox x:Name="carrierBox" HorizontalAlignment="Left" Margin="357,477,0,0" VerticalAlignment="Top" Width="151" SelectionChanged="carrierBox_SelectionChanged" IsEnabled="False" />
+        <Label Content="Select Carrier" HorizontalAlignment="Left" Margin="388,445,0,0" VerticalAlignment="Top" FontSize="14"/>
+    </Grid>
+</Page>

@@ -13,7 +13,6 @@ namespace SQ_TeamClack_TermProj
     public partial class admin_TableConfig : Page
     {
         private User localUser;
-        private routeParams r;
 
         /*!
          * \brief CONSTRUCTOR - This constructor constructs the Table Config page.
@@ -26,53 +25,23 @@ namespace SQ_TeamClack_TermProj
             InitializeComponent();
 
             this.localUser = localUser;
+            carrierAdd.IsEnabled = false;
         }
 
         /*!
-         * \brief
-         * \details
+         * \brief This handler handles what happens when the user clicks on the "List Routes" button.
+         * \details This handler calls the queryRouteTable function when called.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
 
         private void routeButton_Click(object sender, RoutedEventArgs e)
         {
-            // Connect to database
-            string conStr = ConfigurationManager.ConnectionStrings[localUser.CONSTR].ConnectionString;
-            StringBuilder cmdSB = new StringBuilder("SELECT Destination, Distance, Time, West, East FROM Route;");
-            MySqlDataReader reader = null;
-
-            using (MySqlConnection connection = new MySqlConnection(conStr))
-            {
-                MySql.Data.MySqlClient.MySqlCommand cmd = new MySql.Data.MySqlClient.MySqlCommand(cmdSB.ToString(), connection);
-                try
-                {
-                    connection.Open();
-                    reader = cmd.ExecuteReader();
-                    // Once connected, fill textbox with information
-                    while (reader.Read())
-                    {
-                        routeList.Items.Add(new routeParams { 
-                            destination = reader["Destination"].ToString(), 
-                            distance = int.Parse(reader["Distance"].ToString()), 
-                            time = double.Parse(reader["Time"].ToString()), 
-                            west = reader["West"].ToString(), 
-                            east = reader["East"].ToString() });
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
+            queryRouteTable();
         }
 
         /*!
-         * \brief
+         * \brief DISABLED - Mock up button
          * \details
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
@@ -80,13 +49,13 @@ namespace SQ_TeamClack_TermProj
 
         private void carrierAdd_Click(object sender, RoutedEventArgs e)
         {
+
         }
 
         /*!
-         * \brief
-         * \details
-         * \param sender <b>object</b>
-         * \param e <b>RoutedEventArgs</b>
+         * \brief This method populates the routeList List View.
+         * \details This method queries the Omnicorp database in order to populate the shipping routes.
+         * \param <b>void</b>
         */
 
         private void queryRouteTable()
@@ -103,7 +72,6 @@ namespace SQ_TeamClack_TermProj
                 {
                     connection.Open();
                     reader = cmd.ExecuteReader();
-
                     // Once connected, fill textbox with information
                     while (reader.Read())
                     {

@@ -10,8 +10,9 @@
         public string origin { get; set; }
         public string destination { get; set; }
         public int vanType { get; set; }
-        public int duration { get; set; }
-        public bool MARKEDFORACTION { get; set; }
+        public double duration { get; set; }
+        public bool markedForAction { get; set; }
+        public string carrierName { get; set; }
     }
 
     public struct carrierParams

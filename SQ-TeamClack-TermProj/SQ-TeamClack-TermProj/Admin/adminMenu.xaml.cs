@@ -12,7 +12,7 @@ namespace SQ_TeamClack_TermProj
 
         /*!
          * \brief CONSTRUCTOR - This constructor constructs the Admin Menu page.
-         * \details This constructor initializes all the properties that are needed in order to use the IP Config page.
+         * \details This constructor initializes all the properties that are needed in order to use the Admin Menu page.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
 
@@ -24,62 +24,42 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-<<<<<<< Updated upstream
-<<<<<<< HEAD
          * \brief This handler handles when the user clicks the "Backup" button.
-         * \details This handler brings up the admin backup button page.
-=======
-         * \brief This handler changes the to the
-         * \details
->>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
-=======
-         * \brief This handler handles when the user clicks the "Backup" button.
-         * \details This handler brings up the admin backup button page.
->>>>>>> Stashed changes
+         * \details This handler brings up the admin backup button page and sets the page's localUser to the localUser passed in as a parameter.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
 
         private void BackupButton_Click(object sender, RoutedEventArgs e)
         {
-            admin_Backup p1 = new admin_Backup(localUser);
-            AdminFrame.NavigationService.Navigate(p1);
+            admin_Backup adminBackup = new admin_Backup(localUser);
+            AdminFrame.NavigationService.Navigate(adminBackup);
         }
 
         /*!
-<<<<<<< Updated upstream
-<<<<<<< HEAD
          * \brief This handler handles when the user clicks the "Carrier" button.
-         * \details This handler brings up the admin backup button page. 
-=======
-         * \brief
-         * \details
->>>>>>> 994432fe3048c1ee1c55a3f8b1ead4e295007b6e
-=======
-         * \brief This handler handles when the user clicks the "Carrier" button.
-         * \details This handler brings up the admin backup button page. 
->>>>>>> Stashed changes
+         * \details This handler brings up the carrier page and sets the page's localUser to the localUser passed in as a parameter. 
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
 
         private void CarrierButton_Click(object sender, RoutedEventArgs e)
         {
-            admin_CarrierConfig p1 = new admin_CarrierConfig(localUser);
-            AdminFrame.NavigationService.Navigate(p1);
+            admin_CarrierConfig carrierConfig = new admin_CarrierConfig(localUser);
+            AdminFrame.NavigationService.Navigate(carrierConfig);
         }
 
         /*!
-         * \brief
-         * \details
+         * \brief This handler handles when the user clicks the "Table Config" button.
+         * \details This handler brings up the route table page and sets the page's localUser to the localUser passed in as a parameter.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
 
         private void TableButton_Click(object sender, RoutedEventArgs e)
         {
-            admin_TableConfig p1 = new admin_TableConfig(localUser);
-            AdminFrame.NavigationService.Navigate(p1);
+            admin_TableConfig adminTableConfig = new admin_TableConfig(localUser);
+            AdminFrame.NavigationService.Navigate(adminTableConfig);
         }
     }
 }

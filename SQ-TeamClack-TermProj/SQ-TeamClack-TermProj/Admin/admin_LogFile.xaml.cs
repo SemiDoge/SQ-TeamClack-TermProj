@@ -8,20 +8,19 @@ namespace SQ_TeamClack_TermProj
     /// </summary>
     public partial class admin_LogFile : Window
     {
-        private User localUser;
+        //private User localUser;
 
         /*!
-         * \brief
-         * \details
-         * \param sender <b>object</b>
-         * \param e <b>RoutedEventArgs</b>
+         * \brief CONSTRUCTOR - This constructor constructs the Table Config window.
+         * \details This constructor constructs the Table Config page and sets the page's localUser to the localUser passed in as a parameter.
+         * \param <b>void</b>
         */
 
-        public admin_LogFile(User localUser)
+        public admin_LogFile()
         {
             InitializeComponent();
 
-            StreamReader readFile = new StreamReader(File.OpenRead(SQ_TeamClack_TermProj.MainWindow.logfileLocation));
+            StreamReader readFile = new StreamReader(File.OpenRead(MainWindow.logfileLocation));
             LogFileDisplayBlock.Text = readFile.ReadToEnd();
             readFile.Dispose();
         }

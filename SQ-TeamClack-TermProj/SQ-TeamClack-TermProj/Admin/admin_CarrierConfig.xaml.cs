@@ -15,8 +15,8 @@ namespace SQ_TeamClack_TermProj
         private User localUser;
 
         /*!
-         * \brief CONSTRUCTOR - This constructor constructs the Table Config page.
-         * \details This constructor constructs the Table Config page and sets the page's localUser to the localUser passed in as a parameter.
+         s \brief CONSTRUCTOR - This constructor constructs the Carrier Config page.
+         * \details This constructor constructs the Carrier Config page and sets the page's localUser to the localUser passed in as a parameter.
          * \param localUser - <b>User</b> - This User object keeps track of all of the session data.
         */
 
@@ -28,8 +28,8 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief
-         * \details
+         * \brief This handler handles when the user clicks the "List Carriers" button.
+         * \details This handler calls the queryCarrier method to populate the carrierList List View.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
@@ -40,8 +40,8 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief
-         * \details
+         * \brief This handler handles the adding new carriers to the Omnicorp database.
+         * \details This handler runs an UPDATE command to change anything about the carrier information that the user wishes.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
@@ -81,8 +81,8 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief
-         * \details
+         * \brief This handler handles the updating of the carrier information.
+         * \details This handler runs an UPDATE command to change anything about the carrier information that the user wishes.
          * \param sender <b>object</b>
          * \param e <b>RoutedEventArgs</b>
         */
@@ -124,10 +124,9 @@ namespace SQ_TeamClack_TermProj
         }
 
         /*!
-         * \brief
-         * \details
-         * \param sender <b>object</b>
-         * \param e <b>RoutedEventArgs</b>
+         * \brief This method populates the carrierList List View.
+         * \details This method queries the Omnicorp database in order to populate a List View with the carriers known to Omnicorp.
+         * \param <b>void</b>
         */
 
         private void queryCarrier()
