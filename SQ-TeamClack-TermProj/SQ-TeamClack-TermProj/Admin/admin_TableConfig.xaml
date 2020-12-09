@@ -18,13 +18,6 @@
                     <GridViewColumn Header="Time" DisplayMemberBinding="{Binding time}" Width="90"/>
                     <GridViewColumn Header="West" DisplayMemberBinding="{Binding west}" Width="150"/>
                     <GridViewColumn Header="East" DisplayMemberBinding="{Binding east}" Width="150"/>
-                    <GridViewColumn Header="Carrier Name" DisplayMemberBinding="{Binding carrierName}" Width="150" />
-                    <GridViewColumn Header="City Name" DisplayMemberBinding="{Binding FTLA}" Width="150" />
-                    <GridViewColumn Header="FTLA" DisplayMemberBinding="{Binding FTLA}" Width="90" />
-                    <GridViewColumn Header="LTLA" DisplayMemberBinding="{Binding LTLA}" Width="90" />
-                    <GridViewColumn Header="FTLRate" DisplayMemberBinding="{Binding FTLRate}" Width="100" />
-                    <GridViewColumn Header="LTLRate" DisplayMemberBinding="{Binding LTLRate}" Width="100" />
-                    <GridViewColumn Header="reefCharge" DisplayMemberBinding="{Binding reefCharge}" Width="100" />
                 </GridView>
             </ListView.View>
         </ListView>

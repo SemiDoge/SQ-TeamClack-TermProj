@@ -16,8 +16,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Label Content="Select an Order" FontSize="30" HorizontalAlignment="Center" Margin="332,26,324,0" VerticalAlignment="Top" Width="216"/>
-        <Label Content="[Order Selected]" FontSize="20" HorizontalAlignment="Left" Margin="357,410,0,0" VerticalAlignment="Top"/>
+        <Label Content="Select an Order" FontSize="30" HorizontalAlignment="Center" Margin="332,26,324,0" VerticalAlignment="Top" Width="216" Foreground="White"/>
+        <Label Content="[Order Selected]" FontSize="20" HorizontalAlignment="Left" Margin="357,410,0,0" VerticalAlignment="Top" Foreground="White"/>
         <Button x:Name="submitButton" Content="Submit" HorizontalAlignment="Left" Margin="394,535,0,0" VerticalAlignment="Top" Width="84" Click="submitButton_Click" BorderBrush="{x:Null}" IsEnabled="False">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -27,6 +27,6 @@
             </Button.Background>
         </Button>
         <ComboBox x:Name="carrierBox" HorizontalAlignment="Left" Margin="357,477,0,0" VerticalAlignment="Top" Width="151" SelectionChanged="carrierBox_SelectionChanged" IsEnabled="False" />
-        <Label Content="Select Carrier" HorizontalAlignment="Left" Margin="388,445,0,0" VerticalAlignment="Top" FontSize="14"/>
+        <Label Content="Select Carrier" HorizontalAlignment="Left" Margin="388,445,0,0" VerticalAlignment="Top" FontSize="14" Foreground="White"/>
     </Grid>
 </Page>

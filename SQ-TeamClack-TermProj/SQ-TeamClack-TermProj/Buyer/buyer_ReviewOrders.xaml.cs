@@ -30,7 +30,6 @@ namespace SQ_TeamClack_TermProj
             InitializeComponent();
 
             this.localUser = localUser;
-            UsernameLabel.Content = localUser.USERNAME;
             Loaded += MyWindow_Loaded;
         }
 
@@ -43,8 +42,6 @@ namespace SQ_TeamClack_TermProj
         private void MyWindow_Loaded(object sender, RoutedEventArgs e)
         {
             queryOpenOrders();
-            invoiceOrderBTN.IsEnabled = false;
-            ReviewOrdersBTN.IsEnabled = false;
         }
 
         /*!

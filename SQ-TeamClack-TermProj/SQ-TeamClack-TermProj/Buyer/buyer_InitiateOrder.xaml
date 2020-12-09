@@ -5,50 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:SQ_TeamClack_TermProj"
       mc:Ignorable="d"
-      d:DesignHeight="800" d:DesignWidth="1000"
-      Title="buyer_InitiateOrder">
+      d:DesignHeight="721" d:DesignWidth="947"
+      
+      Title="buyer_InitiateOrder" Background="{x:Null}">
 
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.2*" />
-            <ColumnDefinition Width="5*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
-            <RowDefinition Height="0.02*" />
-            <RowDefinition Height="0.02*" />
-            <RowDefinition Height="0.12*" />
-            <RowDefinition Height="0.013*" />
-        </Grid.RowDefinitions>
-        <Border Grid.Column="0" Background="#c2c2c2" />
-        <Border Grid.Column="1" Background="White" />
-        <Border Grid.Column="0" Grid.Row="0" Background="#606060" />
-        <Border Grid.Column="0" Grid.Row="1" Background="#c2c2c2" Padding="0" />
-        <Border Grid.Column="0" Grid.Row="2" Background="#c2c2c2" />
-        <Border Grid.Column="0" Grid.Row="3" Background="#b0b0b0" />
-        <Border Grid.Column="0" Grid.Row="4" Background="#c2c2c2" />
-        <Border Grid.Column="1" Grid.Row="0" Background="#c2c2c2" />
-
-        <Label Grid.Column="0" Grid.Row="0" Content="T.M.S"
-               FontSize="50" Foreground="#e4e4e4" FontFamily="Arial"
-               HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Label x:Name="UsernameLabel" Grid.Column="1" Grid.Row="0"
-               Content="" HorizontalContentAlignment="Right" FontFamily="Arial"
-               FontSize="30" VerticalAlignment="Center" Foreground="#616161" />
-        <Label x:Name="orderStatusLabel" Grid.Column="1" Grid.Row="1"
-               Content="Connect To Database To See Contracts" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-               FontSize="30" Foreground="#616161" FontFamily="Arial" />
-        <Label x:Name="databaseLabel" Grid.Column="1" Grid.Row="3"
+        <Label x:Name="orderStatusLabel"
+               Content="Connect To Database To See Contracts" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"
+               FontSize="30" Margin="130,130,130,545" Foreground="White"/>
+        <Label x:Name="databaseLabel"
                Content="Contract Marketplace" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"
-               FontSize="30" Foreground="#616161" FontFamily="Arial" />
+               FontSize="30" Margin="0,10,0,664" Foreground="White" />
         <ListView x:Name="databaseView" Grid.Column="1" Grid.Row="3" Height="330"
                   ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto"
                   FontFamily="Arial" SelectionChanged="databaseView_SelectionChanged" ItemsSource="{Binding databaseView}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Client Name" DisplayMemberBinding="{Binding clientName}" Width="120" />
-                    <GridViewColumn Header="Job Type" DisplayMemberBinding="{Binding jobType}" Width="70" />
-                    <GridViewColumn Header="Quanity" DisplayMemberBinding="{Binding quantity}" Width="100" />
+                    <GridViewColumn Header="Client Name" DisplayMemberBinding="{Binding clientName}" Width="140" />
+                    <GridViewColumn Header="Job Type" DisplayMemberBinding="{Binding jobType}" Width="120" />
+                    <GridViewColumn Header="Quanity" DisplayMemberBinding="{Binding quantity}" Width="120" />
                     <GridViewColumn Header="Origin" DisplayMemberBinding="{Binding origin}" Width="220" />
                     <GridViewColumn Header="Destination" DisplayMemberBinding="{Binding destination}" Width="220" />
                     <GridViewColumn Header="Van Type" DisplayMemberBinding="{Binding vanType}" Width="60" />
@@ -56,29 +31,32 @@
             </ListView.View>
         </ListView>
 
-        <Label x:Name="errorLabel" Grid.Column="1" Grid.Row="4" Content=""
-               HorizontalContentAlignment="Left" Foreground="Red" FontSize="15" />
+        <Label x:Name="errorLabel" Content=""
+               HorizontalContentAlignment="Left" Foreground="Red" FontSize="15" Margin="0,652,0,10" />
 
-        <Button x:Name="connectDataBTN" Grid.Column="1" Grid.Row="2" Content="Connect"
-                VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="20" FontFamily="Arial"
-                Width="90" Click="connectDataBTN_Click" />
-        <Button x:Name="createOrderBTN" Grid.Column="1" Grid.Row="3" Content="Create Order"
+        <Button x:Name="connectDataBTN" Content="Connect"
+                VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="20" FontFamily="Arial"
+                Width="136" Margin="408,73,403,0" Click="connectDataBTN_Click" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFAC00AC" Offset="0"/>
+                    <GradientStop Color="Magenta" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+
+        <Button x:Name="createOrderBTN" Content="Create Order"
                 VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20" FontFamily="Arial"
-                Width="140" Click="createOrderBTN_Click" />
+                Width="166" Click="createOrderBTN_Click" Margin="391,0,390,74" Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFAC00AC" Offset="0"/>
+                    <GradientStop Color="Magenta" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
 
-        <Button x:Name="InitiateOrderBTN" Grid.Column="0" Grid.Row="1"
-                Content="Create a Order" VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                Width="200" Height="85" Foreground="#616161" FontSize="20" FontFamily="Arial" Click="InitiateOrderBTN_Click" />
-        <Button x:Name="ReviewCustomersBTN" Grid.Column="0" Grid.Row="2"
-                Content="Review Customers" VerticalAlignment="Top" HorizontalAlignment="Center"
-                Width="200" Height="45" Foreground="#616161" FontSize="20" FontFamily="Arial" Click="ReviewCustomersBTN_Click" />
-        <Button x:Name="ReviewOrdersBTN" Grid.Column="0" Grid.Row="2"
-                Content="Review Orders" VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                Width="200" Height="43" Foreground="#616161" FontSize="20" FontFamily="Arial" Click="ReviewOrdersBTN_Click" />
-        <Button x:Name="logoutButton" Grid.Column="0" Grid.Row="4"
-                Content="Logout" VerticalAlignment="Center" HorizontalAlignment="Center"
-                Width="200" Height="70" FontSize="20" Foreground="#616161" FontFamily="Arial"
-                Click="logoutButton_Click" />
-        <Label x:Name="displaySelectedContract" Content=""  HorizontalAlignment="Left" Margin="245,390,0,0" Grid.Row="3" VerticalAlignment="Top" Width="438" FontSize="30" Grid.Column="1" />
+
+        <Label x:Name="displaySelectedContract" Content=""  HorizontalAlignment="Left" Margin="245,546,0,0" VerticalAlignment="Top" Width="438" FontSize="30" />
     </Grid>
 </Page>

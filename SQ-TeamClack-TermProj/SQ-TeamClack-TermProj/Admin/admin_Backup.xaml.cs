@@ -40,8 +40,8 @@ namespace SQ_TeamClack_TermProj
 
         private void LogButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog logFile = new SaveFileDialog();
-            logFile.Filter = "Text file(*.txt)|*.txt|All Files (*.*)|*.*";
+            OpenFileDialog logFile = new OpenFileDialog();
+            logFile.Filter = "Log file(*.log)|*.log";
 
             if (logFile.ShowDialog() == true)
             {

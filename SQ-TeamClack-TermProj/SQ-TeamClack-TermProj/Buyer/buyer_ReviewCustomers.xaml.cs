@@ -27,9 +27,7 @@ namespace SQ_TeamClack_TermProj
             File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer loaded review customers.\n");
 
             this.localUser = localUser;
-            UsernameLabel.Content = localUser.USERNAME;
             Loaded += MyWindow_Loaded;
-            ReviewCustomersBTN.IsEnabled = false;
         }
 
         /*!

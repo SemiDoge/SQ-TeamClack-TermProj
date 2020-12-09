@@ -14,7 +14,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Carrier Name" DisplayMemberBinding="{Binding carrierName}" Width="150" />
-                    <GridViewColumn Header="City Name" DisplayMemberBinding="{Binding FTLA}" Width="150" />
+                    <GridViewColumn Header="City Name" DisplayMemberBinding="{Binding cityName}" Width="150" />
                     <GridViewColumn Header="FTLA" DisplayMemberBinding="{Binding FTLA}" Width="90" />
                     <GridViewColumn Header="LTLA" DisplayMemberBinding="{Binding LTLA}" Width="90" />
                     <GridViewColumn Header="FTLRate" DisplayMemberBinding="{Binding FTLRate}" Width="100" />

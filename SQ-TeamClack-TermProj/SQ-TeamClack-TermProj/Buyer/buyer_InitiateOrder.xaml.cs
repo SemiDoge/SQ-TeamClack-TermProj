@@ -34,7 +34,6 @@ namespace SQ_TeamClack_TermProj
 
             this.localUser = localUser;
             // DataContext = new buyer_InitiateOrder();
-            InitiateOrderBTN.IsEnabled = false;
         }
 
         /*!

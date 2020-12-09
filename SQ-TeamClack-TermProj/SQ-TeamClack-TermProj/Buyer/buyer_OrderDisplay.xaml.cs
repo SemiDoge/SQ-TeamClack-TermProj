@@ -32,11 +32,6 @@ namespace SQ_TeamClack_TermProj
 
             fillCityComboBox();
 
-            UsernameLabel.Content = localUser.USERNAME;
-
-            // Disable create order button
-            InitiateOrderBTN.IsEnabled = false;
-
             order = new Order(param);
 
             customerName.Content = order.CUSTOMERNAME;

@@ -75,22 +75,22 @@ namespace SQ_TeamClack_TermProj
                 {
                     case "AdminAcc":
                         // Go to admin page
-                        File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin logged in.\n");
-                        adminMenu adminM = new adminMenu(localUser);
+                        File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Admin logged in.\n");
+                        admin_MainMenu adminM = new admin_MainMenu(localUser);
                         this.NavigationService.Navigate(adminM);
                         break;
 
                     case "PlannerAcc":
                         // Go to planner page
-                        File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner logged in.\n");
-                        plannerMenu plannerM = new plannerMenu(localUser);
+                        File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Planner logged in.\n");
+                        planner_MainMenu plannerM = new planner_MainMenu(localUser);
                         this.NavigationService.Navigate(plannerM);
                         break;
 
                     case "BuyerAcc":
-                        File.AppendAllText(@"Log\Log.txt", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer logged in.\n");
+                        File.AppendAllText(@"Log\Log.log", DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss.ff") + ": Buyer logged in.\n");
                         // Go to buyer page
-                        buyerMenu buyerM = new buyerMenu(localUser);
+                        buyer_MainMenu buyerM = new buyer_MainMenu(localUser);
                         this.NavigationService.Navigate(buyerM);
                         break;
                 }
