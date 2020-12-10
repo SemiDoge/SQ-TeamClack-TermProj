@@ -5,7 +5,7 @@ WPF Application that uses C# .NET and MySQL and is used as an ordering system th
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 ### WPF Development
-These samples require Visual Studio 2019 to build, test, and deploy.
+This application requires Visual Studio 2019 to build, test, and deploy.
 ### Using the application
 To use this application, clone the repository with
 ```bash
