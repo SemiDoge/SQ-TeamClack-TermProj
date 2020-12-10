@@ -4,17 +4,12 @@ WPF Application that uses C# .NET and MySQL and is used as an ordering system th
 ![alt text](https://github.com/SemiDoge/SQ-TeamClack-TermProj/blob/main/Project%20Documents/TMSProject.png) 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-### Prerequisites
-```bash
-.NET Core, MySQL
-```
-### Clone Repository
+### WPF Development
+These samples require Visual Studio 2019 to build, test, and deploy.
+### Using the application
+To use this application, clone the repository with
 ```bash
 git clone https://github.com/SemiDoge/SQ-TeamClack-TermProj.git
-```
-### Install Dependencies
-```bash
-npm install
 ```
 ### MySQL
 Make sure to install MySQL and create the Omnicorp database and insert into it using the provided script.
